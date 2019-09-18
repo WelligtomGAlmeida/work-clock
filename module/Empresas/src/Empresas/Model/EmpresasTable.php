@@ -1,9 +1,9 @@
 <?php
-namespace Empresa\Model;
+namespace Empresas\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
-class EmpresaTable
+class EmpresasTable
 {
     protected $tableGateway;
 
@@ -18,36 +18,42 @@ class EmpresaTable
         return $resultSet;
     }
 
-    public function getEmpresa($id)
+    public function getEmpresas($id)
     {
         $id  = (int) $id;
         $rowset = $this->tableGateway->select(array('id' => $id));
         $row = $rowset->current();
         if (!$row) {
-            throw new \Exception("Could not find row $id");
+            throw new \Exception("Não foi possível encontrar a empresa com id $id");
         }
         return $row;
     }
 
-    public function saveEmpresa(Empresa $empresa)
+    public function saveEmpresas(Empresas $empresas)
     {
         $data = array(
-            'nome' => $empresa->nome,
+            'razao_social' => $empresas->razao_social,
+            'cnpj' => $empresas->cnpj,
+            'telefone_fixo' => $empresas->telefone_fixo,
+            'telefone_celular_1' => $empresas->telefone_celular_1,
+            'telefone_celular_2' => $empresas->telefone_celular_2,
+            'email' => $empresas->email,
+            'data_cadastro' => $empresas->data_cadastro,
         );
 
-        $id = (int) $empresa->id;
+        $id = (int) $empresas->id;
         if ($id == 0) {
             $this->tableGateway->insert($data);
         } else {
-            if ($this->getEmpresa($id)) {
+            if ($this->getEmpresas($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
             } else {
-                throw new \Exception('Empresa id does not exist');
+                throw new \Exception('Esta empresa não existe');
             }
         }
     }
 
-    public function deleteEmpresa($id)
+    public function deleteEmpresas($id)
     {
         $this->tableGateway->delete(array('id' => $id));
     }

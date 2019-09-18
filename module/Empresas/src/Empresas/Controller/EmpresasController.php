@@ -22,7 +22,7 @@ class EmpresasController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'empresass' => $this->getEmpresasTable()->fetchAll(),
+            'empresas' => $this->getEmpresasTable()->fetchAll(),
         ));
     }
 
@@ -39,6 +39,7 @@ class EmpresasController extends AbstractActionController
 
             if ($form->isValid()) {
                 $empresas->exchangeArray($form->getData());
+
                 $this->getEmpresasTable()->saveEmpresas($empresas);
 
                 // Redirect to list of empresass

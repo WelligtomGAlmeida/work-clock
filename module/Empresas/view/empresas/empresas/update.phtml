@@ -9,7 +9,7 @@ $this->headTitle($title);
 <?php
 $form = $this->form;
 $form->setAttribute('action', $this->url(
-    'empresa',
+    'empresas',
     array(
         'action' => 'update',
         'id'     => $this->id,
@@ -19,6 +19,12 @@ $form->prepare();
 
 echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('nome'));
+echo $this->formRow($form->get('razao_social'));
+echo $this->formRow($form->get('cnpj'));
+echo $this->formRow($form->get('telefone_fixo'));
+echo $this->formRow($form->get('telefone_celular_1'));
+echo $this->formRow($form->get('telefone_celular_2'));
+echo $this->formRow($form->get('email'));
+echo $this->formRow($form->get('data_cadastro'));
 echo $this->formSubmit($form->get('submit'));
 echo $this->form()->closeTag();

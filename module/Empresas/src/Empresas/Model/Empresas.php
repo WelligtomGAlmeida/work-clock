@@ -61,7 +61,7 @@ class Empresas
                         'name'    => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
+                            'min'      => 5,
                             'max'      => 100,
                         ),
                     ),
@@ -80,8 +80,8 @@ class Empresas
                         'name'    => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 100,
+                            'min'      => 18,
+                            'max'      => 18,
                         ),
                     ),
                 ),
@@ -89,7 +89,7 @@ class Empresas
 
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'telefone_fixo',
-                'required' => true,
+                'required' => false,
                 'filters'  => array(
                     array('name' => 'StripTags'),
                     array('name' => 'StringTrim'),
@@ -99,8 +99,8 @@ class Empresas
                         'name'    => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 100,
+                            'min'      => 14,
+                            'max'      => 14,
                         ),
                     ),
                 ),
@@ -118,8 +118,8 @@ class Empresas
                         'name'    => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 100,
+                            'min'      => 15,
+                            'max'      => 15,
                         ),
                     ),
                 ),
@@ -127,7 +127,7 @@ class Empresas
 
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'telefone_celular_2',
-                'required' => true,
+                'required' => false,
                 'filters'  => array(
                     array('name' => 'StripTags'),
                     array('name' => 'StringTrim'),
@@ -137,8 +137,8 @@ class Empresas
                         'name'    => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 100,
+                            'min'      => 15,
+                            'max'      => 15,
                         ),
                     ),
                 ),
@@ -146,7 +146,7 @@ class Empresas
 
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'email',
-                'required' => true,
+                'required' => false,
                 'filters'  => array(
                     array('name' => 'StripTags'),
                     array('name' => 'StringTrim'),
@@ -156,14 +156,14 @@ class Empresas
                         'name'    => 'StringLength',
                         'options' => array(
                             'encoding' => 'UTF-8',
-                            'min'      => 1,
-                            'max'      => 100,
+                            'min'      => 6,
+                            'max'      => 50,
                         ),
                     ),
                 ),
             )));
 
-            $inputFilter->add($factory->createInput(array(
+            /*$inputFilter->add($factory->createInput(array(
                 'name'     => 'data_cadastro',
                 'required' => true,
                 'filters'  => array(
@@ -179,6 +179,21 @@ class Empresas
                             'max'      => 100,
                         ),
                     ),
+                ),
+            )));*/
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'data_cadastro',
+                'required' => true,
+                'validators' => array(
+                        array(
+                                'name'    => 'NotEmpty',
+                                'options' => array(
+                                    'messages' => array(
+                                        'isEmpty' => 'É obrigatório o preenchimento do campo data de nascimento'
+                                    )
+                                ),
+                        ),
                 ),
             )));
 

@@ -1,0 +1,22 @@
+.navbar-principal {
+    background: #b9c0e8;
+    padding: 0 !important;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+    font-size: 28px
+}
+
+a.nav-link {
+    color: #fff
+}
+
+ul.navbar-nav {
+    position: absolute;
+    right: 10%;
+}
+
+.container.main-content {
+    margin-top: 2rem;
+}
