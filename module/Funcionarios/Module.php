@@ -1,10 +1,10 @@
 <?php
-namespace Empresa;
+namespace Funcionarios;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Empresa\Model\Empresa;
-use Empresa\Model\EmpresaTable;
+use Funcionarios\Model\Funcionarios;
+use Funcionarios\Model\FuncionariosTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -33,16 +33,16 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return array(
             'factories' => array(
-                'Empresa\Model\EmpresaTable' =>  function($sm) {
-                    $tableGateway = $sm->get('EmpresaTableGateway');
-                    $table = new EmpresaTable($tableGateway);
+                'Funcionarios\Model\FuncionariosTable' =>  function($sm) {
+                    $tableGateway = $sm->get('FuncionariosTableGateway');
+                    $table = new FuncionariosTable($tableGateway);
                     return $table;
                 },
-                'EmpresaTableGateway' => function ($sm) {
+                'FuncionariosTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Empresa());
-                    return new TableGateway('empresa', $dbAdapter, null, $resultSetPrototype);
+                    $resultSetPrototype->setArrayObjectPrototype(new Funcionarios());
+                    return new TableGateway('funcionarios', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );

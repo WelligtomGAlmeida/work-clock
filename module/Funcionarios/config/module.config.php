@@ -2,22 +2,22 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Empresa\Controller\Empresa' => 'Empresa\Controller\EmpresaController',
+            'Funcionarios\Controller\Funcionarios' => 'Funcionarios\Controller\FuncionariosController',
         ),
     ),
 
     'router' => array(
         'routes' => array(
-            'empresa' => array(
+            'funcionarios' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/empresa[/][:action][/:id]',
+                    'route'    => '/funcionarios[/][:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Empresa\Controller\Empresa',
+                        'controller' => 'Funcionarios\Controller\Funcionarios',
                         'action'     => 'index',
                     ),
                 ),
@@ -27,7 +27,7 @@ return array(
 
     'view_manager' => array(
         'template_path_stack' => array(
-            'empresa' => __DIR__ . '/../view',
+            'funcionarios' => __DIR__ . '/../view',
         ),
     ),
 );

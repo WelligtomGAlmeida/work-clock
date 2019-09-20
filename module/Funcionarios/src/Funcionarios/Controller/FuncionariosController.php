@@ -1,48 +1,49 @@
 <?php
-namespace Empresa\Controller;
+namespace Funcionarios\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Empresa\Model\Empresa;
-use Empresa\Form\EmpresaForm;
+use Funcionarios\Model\Funcionarios;
+use Funcionarios\Form\FuncionariosForm;
 
-class EmpresaController extends AbstractActionController
+class FuncionariosController extends AbstractActionController
 {
-    protected $empresaTable;
+    protected $funcionariosTable;
 
-    public function getEmpresaTable()
+    public function getFuncionariosTable()
     {
-        if (!$this->empresaTable) {
+        if (!$this->funcionariosTable) {
             $sm = $this->getServiceLocator();
-            $this->empresaTable = $sm->get('Empresa\Model\EmpresaTable');
+            $this->funcionariosTable = $sm->get('Funcionarios\Model\FuncionariosTable');
         }
-        return $this->empresaTable;
+        return $this->funcionariosTable;
     }
 
     public function indexAction()
     {
         return new ViewModel(array(
-            'empresas' => $this->getEmpresaTable()->fetchAll(),
+            'funcionarios' => $this->getFuncionariosTable()->fetchAll(),
         ));
     }
 
     public function createAction()
     {
-        $form = new EmpresaForm();
+        $form = new FuncionariosForm();
         $form->get('submit')->setValue('Create');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $empresa = new Empresa();
-            $form->setInputFilter($empresa->getInputFilter());
+            $funcionarios = new Funcionarios();
+            $form->setInputFilter($funcionarios->getInputFilter());
             $form->setData($request->getPost());
-
+            $funcionarios->empresa_id = 4;
+            var_dump($request->getPost());
             if ($form->isValid()) {
-                $empresa->exchangeArray($form->getData());
-                $this->getEmpresaTable()->saveEmpresa($empresa);
+                $funcionarios->exchangeArray($form->getData());
+                $this->getFuncionariosTable()->saveFuncionarios($funcionarios);
 
-                // Redirect to list of empresas
-                return $this->redirect()->toRoute('empresa');
+                // Redirect to list of funcionarioss
+                return $this->redirect()->toRoute('funcionarios');
             }
         }
         return array('form' => $form);
@@ -52,7 +53,7 @@ class EmpresaController extends AbstractActionController
     {
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
-            return $this->redirect()->toRoute('empresa', array(
+            return $this->redirect()->toRoute('funcionarios', array(
                 'action' => 'create'
             ));
         }
@@ -60,28 +61,28 @@ class EmpresaController extends AbstractActionController
         // Requisita um ALbum com id específico. Uma exceção é disparada caso
         // ele não seja encontrado, nesse caso redirecione para a págin incial.
         try {
-            $empresa = $this->getEmpresaTable()->getEmpresa($id);
+            $funcionarios = $this->getFuncionariosTable()->getFuncionarios($id);
         }
         catch (\Exception $ex) {
-            return $this->redirect()->toRoute('empresa', array(
+            return $this->redirect()->toRoute('funcionarios', array(
                 'action' => 'index'
             ));
         }
 
-        $form  = new EmpresaForm();
-        $form->bind($empresa);
+        $form  = new FuncionariosForm();
+        $form->bind($funcionarios);
         $form->get('submit')->setAttribute('value', 'Update');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $form->setInputFilter($empresa->getInputFilter());
+            $form->setInputFilter($funcionarios->getInputFilter());
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
-                $this->getEmpresaTable()->saveEmpresa($empresa);
+                $this->getFuncionariosTable()->saveFuncionarios($funcionarios);
 
                 // Redireciona para a lista de albuns
-                return $this->redirect()->toRoute('empresa');
+                return $this->redirect()->toRoute('funcionarios');
             }
         }
 
@@ -96,7 +97,7 @@ class EmpresaController extends AbstractActionController
     {
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
-            return $this->redirect()->toRoute('empresa');
+            return $this->redirect()->toRoute('funcionarios');
         }
 
         $request = $this->getRequest();
@@ -105,16 +106,16 @@ class EmpresaController extends AbstractActionController
 
             if ($del == 'Yes') {
                 $id = (int) $request->getPost('id');
-                $this->getEmpresaTable()->deleteEmpresa($id);
+                $this->getFuncionariosTable()->deleteFuncionarios($id);
             }
 
             // Redireciona para a lista de albuns
-            return $this->redirect()->toRoute('empresa');
+            return $this->redirect()->toRoute('funcionarios');
         }
 
         return array(
             'id'    => $id,
-            'empresa' => $this->getEmpresaTable()->getEmpresa($id)
+            'funcionarios' => $this->getFuncionariosTable()->getFuncionarios($id)
         );
     }
 }

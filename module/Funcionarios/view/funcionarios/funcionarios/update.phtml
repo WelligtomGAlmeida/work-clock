@@ -1,0 +1,41 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Alterar Funcionário';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'funcionarios',
+    array(
+        'action' => 'update',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('nome'));
+echo $this->formRow($form->get('sexo'));
+echo $this->formRow($form->get('data_nascimento'));
+echo $this->formRow($form->get('rg'));
+echo $this->formRow($form->get('cpf'));
+echo $this->formRow($form->get('pis_nis'));
+echo $this->formRow($form->get('telefone_fixo'));
+echo $this->formRow($form->get('telefone_celular_1'));
+echo $this->formRow($form->get('telefone_celular_2'));
+echo $this->formRow($form->get('email'));
+echo $this->formRow($form->get('salario'));
+echo $this->formRow($form->get('sindicato'));
+echo $this->formRow($form->get('funcao'));
+echo $this->formRow($form->get('perfil'));
+echo $this->formRow($form->get('user_name'));
+echo $this->formRow($form->get('senha'));
+echo $this->formRow($form->get('data_admissao'));
+echo $this->formRow($form->get('empresa_id'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();

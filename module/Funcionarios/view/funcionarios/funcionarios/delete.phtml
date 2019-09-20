@@ -1,22 +1,22 @@
 <?php
 
-$title = 'Excluir Empresa';
+$title = 'Excluir Funcionário';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 
-<p>Tem certeza que deseja excluir esta empresa
-    '<?php echo $this->escapeHtml($empresa->nome); ?>'
+<p>Tem certeza que deseja excluir este funcionário?
+    '<?php echo $this->escapeHtml($funcionarios->nome); ?>'
 </p>
 <?php
-$url = $this->url('empresa', array(
+$url = $this->url('funcionarios', array(
     'action' => 'delete',
     'id'     => $this->id,
 ));
 ?>
 <form action="<?php echo $url; ?>" method="post">
 <div>
-    <input type="hidden" name="id" value="<?php echo (int) $empresa->id; ?>" />
+    <input type="hidden" name="id" value="<?php echo (int) $this->id; ?>" />
     <input type="submit" name="delete" value="Yes" />
     <input type="submit" name="delete" value="No" />
 </div>

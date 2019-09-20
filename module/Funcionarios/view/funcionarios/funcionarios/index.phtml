@@ -1,0 +1,34 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'Funcionários';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('funcionarios', array('action'=>'create'));?>">+ Adicionar novo funcionário</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Id</th>
+    <th>Nome</th>
+    <th>CPF</th>
+    <th>PIS/NIS</th>
+    <th></th>
+</tr>
+<?php foreach ($funcionarios as $funcionario) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($funcionario->id);?></td>
+    <td><?php echo $this->escapeHtml($funcionario->nome);?></td>
+    <td><?php echo $this->escapeHtml($funcionario->cpf);?></td>
+    <td><?php echo $this->escapeHtml($funcionario->pis_nis);?></td>
+    <td>
+        <a href="<?php echo $this->url('funcionarios',
+            array('action'=>'update', 'id' => $funcionario->id));?>">Alterar</a>
+        <a href="<?php echo $this->url('funcionarios',
+            array('action'=>'delete', 'id' => $funcionario->id));?>">Excluir</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
