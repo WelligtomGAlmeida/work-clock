@@ -37,7 +37,7 @@ class FuncionariosController extends AbstractActionController
             $form->setInputFilter($funcionarios->getInputFilter());
             $form->setData($request->getPost());
             $funcionarios->empresa_id = 4;
-            var_dump($request->getPost());
+            
             if ($form->isValid()) {
                 $funcionarios->exchangeArray($form->getData());
                 $this->getFuncionariosTable()->saveFuncionarios($funcionarios);

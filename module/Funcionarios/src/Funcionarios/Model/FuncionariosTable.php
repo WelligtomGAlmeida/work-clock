@@ -49,7 +49,14 @@ class FuncionariosTable
             'user_name' => $funcionarios->user_name,
             'senha' => $funcionarios->senha,
             'data_admissao' => $funcionarios->data_admissao,
-            'empresa_id' => $funcionarios->empresa_id
+            'empresa_id' => $funcionarios->empresa_id,
+            'cep' => $empresas->cep,
+            'cidade' => $empresas->cidade,
+            'uf' => $empresas->uf,
+            'logradouro' => $empresas->logradouro,
+            'numero' => $empresas->numero,
+            'bairro' => $empresas->bairro,
+            'complemento' => $empresas->complemento            
         );
 
         $id = (int) $funcionarios->id;

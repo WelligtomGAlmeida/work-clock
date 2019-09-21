@@ -39,6 +39,13 @@ class EmpresasTable
             'telefone_celular_2' => $empresas->telefone_celular_2,
             'email' => $empresas->email,
             'data_cadastro' => $empresas->data_cadastro,
+            'cep' => $empresas->cep,
+            'cidade' => $empresas->cidade,
+            'uf' => $empresas->uf,
+            'logradouro' => $empresas->logradouro,
+            'numero' => $empresas->numero,
+            'bairro' => $empresas->bairro,
+            'complemento' => $empresas->complemento
         );
 
         $id = (int) $empresas->id;

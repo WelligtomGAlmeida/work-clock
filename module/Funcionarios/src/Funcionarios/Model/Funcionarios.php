@@ -27,6 +27,13 @@ class Funcionarios
     public $senha;
     public $data_admissao;
     public $empresa_id;
+    public $cep;
+    public $cidade;
+    public $uf;
+    public $logradouro;
+    public $numero;
+    public $bairro;
+    public $complemento;
     protected $inputFilter;
 
     public function exchangeArray($data)
@@ -50,6 +57,13 @@ class Funcionarios
         $this->senha = (!empty($data['senha'])) ? $data['senha'] : null;
         $this->data_admissao = (!empty($data['data_admissao'])) ? $data['data_admissao'] : null;
         $this->empresa_id = (!empty($data['empresa_id'])) ? $data['empresa_id'] : null;
+        $this->cep = (!empty($data['cep'])) ? $data['cep'] : null;
+        $this->cidade = (!empty($data['cidade'])) ? $data['cidade'] : null;
+        $this->uf = (!empty($data['uf'])) ? $data['uf'] : null;
+        $this->logradouro = (!empty($data['logradouro'])) ? $data['logradouro'] : null;
+        $this->numero = (!empty($data['numero'])) ? $data['numero'] : null;
+        $this->bairro = (!empty($data['bairro'])) ? $data['bairro'] : null;
+        $this->complemento = (!empty($data['complemento'])) ? $data['complemento'] : null;
         
     }
 
@@ -405,6 +419,134 @@ class Funcionarios
                     ),
                 ),
             )));
+
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'cep',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 9,
+                            'max'      => 9,
+                        ),
+                    ),
+                ),
+            )));
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'cidade',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 3,
+                            'max'      => 50,
+                        ),
+                    ),
+                ),
+            )));
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'uf',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 2,
+                            'max'      => 2,
+                        ),
+                    ),
+                ),
+            )));
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'logradouro',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 3,
+                            'max'      => 70,
+                        ),
+                    ),
+                ),
+            )));
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'numero',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 1,
+                            'max'      => 10,
+                        ),
+                    ),
+                ),
+            )));
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'bairro',
+                'required' => true,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 3,
+                            'max'      => 50,
+                        ),
+                    ),
+                ),
+            )));
+            $inputFilter->add($factory->createInput(array(
+                'name'     => 'complemento',
+                'required' => false,
+                'filters'  => array(
+                    array('name' => 'StripTags'),
+                    array('name' => 'StringTrim'),
+                ),
+                'validators' => array(
+                    array(
+                        'name'    => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min'      => 3,
+                            'max'      => 50,
+                        ),
+                    ),
+                ),
+            )));
+
             $this->inputFilter = $inputFilter;
         }
 

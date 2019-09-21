@@ -147,6 +147,55 @@ class FuncionariosForm extends Form
             ),
         ));
         $this->add(array(
+            'name' => 'cep',
+            'type' => 'Text',
+            'options' => array(
+                'label' => 'CEP',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'cidade',
+            'type' => 'Text',
+            'options' => array(
+                'label' => 'Cidade',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'uf',
+            'type' => 'Text',
+            'options' => array(
+                'label' => 'UF',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'logradouro',
+            'type' => 'Text',
+            'options' => array(
+                'label' => 'Logradouro',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'numero',
+            'type' => 'Text',
+            'options' => array(
+                'label' => 'Número',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'bairro',
+            'type' => 'Text',
+            'options' => array(
+                'label' => 'Bairro',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'complemento',
+            'type' => 'Text',
+            'options' => array(
+                'label' => 'Complemento',
+            ),
+        ));
+        $this->add(array(
             'name' => 'submit',
             'type' => 'Submit',
             'attributes' => array(
