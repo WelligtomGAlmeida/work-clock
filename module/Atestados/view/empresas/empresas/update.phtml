@@ -1,0 +1,37 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Alterar Empresa';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'empresas',
+    array(
+        'action' => 'update',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('razao_social'));
+echo $this->formRow($form->get('cnpj'));
+echo $this->formRow($form->get('telefone_fixo'));
+echo $this->formRow($form->get('telefone_celular_1'));
+echo $this->formRow($form->get('telefone_celular_2'));
+echo $this->formRow($form->get('email'));
+echo $this->formRow($form->get('data_cadastro'));
+echo $this->formRow($form->get('cep'));
+echo $this->formRow($form->get('cidade'));
+echo $this->formRow($form->get('uf'));
+echo $this->formRow($form->get('logradouro'));
+echo $this->formRow($form->get('numero'));
+echo $this->formRow($form->get('bairro'));
+echo $this->formRow($form->get('complemento'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();

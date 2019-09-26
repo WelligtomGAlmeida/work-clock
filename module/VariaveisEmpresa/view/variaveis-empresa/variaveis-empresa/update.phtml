@@ -1,0 +1,37 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Configuração de Empresa';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'variaveisEmpresa',
+    array(
+        'action' => 'update',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('empresa_id'));
+echo $this->formRow($form->get('ent_1'));
+echo $this->formRow($form->get('sai_1'));
+echo $this->formRow($form->get('ent_2'));
+echo $this->formRow($form->get('sai_2'));
+echo $this->formRow($form->get('salario_padrao'));
+echo $this->formRow($form->get('valor_hora_extra'));
+echo $this->formRow($form->get('trabalho_sabado'));
+echo $this->formRow($form->get('horas_semanais'));
+echo $this->formRow($form->get('ent_sab_1'));
+echo $this->formRow($form->get('sai_sab_1'));
+echo $this->formRow($form->get('ent_sab_2'));
+echo $this->formRow($form->get('sai_sab_2'));
+echo $this->formRow($form->get('valor_sindicato'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();

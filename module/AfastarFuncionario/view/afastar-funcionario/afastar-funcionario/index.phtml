@@ -1,0 +1,33 @@
+<?php
+// module/Album/view/album/album/index.phtml:
+
+$title = 'Afastar Funcionário';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('afastarFuncionario', array('action'=>'create'));?>">+ Adicionar novo afastamento</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Código</th>
+    <th>Funcionário</th>
+    <th>Tipo</th>
+    <th>Data de Início</th>
+</tr>
+<?php foreach ($afastarFuncionario as $afastamento) : ?>
+<tr>
+    <td><?php echo $this->escapeHtml($afastamento->id);?></td>
+    <td><?php echo $this->escapeHtml($afastamento->funcionario_id);?></td>
+    <td><?php echo $this->escapeHtml($afastamento->tipo);?></td>
+    <td><?php echo $this->escapeHtml($afastamento->data_ini);?></td>
+    <td>
+        <a href="<?php echo $this->url('afastarFuncionario',
+            array('action'=>'update', 'id' => $afastamento->id));?>">Alterar</a>
+        <a href="<?php echo $this->url('afastarFuncionario',
+            array('action'=>'delete', 'id' => $afastamento->id));?>">Excluir</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>

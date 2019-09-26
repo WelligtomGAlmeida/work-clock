@@ -1,0 +1,29 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Alterar Afastamento';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'afastarFuncionario',
+    array(
+        'action' => 'update',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('funcionario_id'));
+echo $this->formRow($form->get('data_ini'));
+echo $this->formRow($form->get('data_fim'));
+echo $this->formRow($form->get('tipo'));
+echo $this->formRow($form->get('observacao'));
+echo $this->formRow($form->get('motivo'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
