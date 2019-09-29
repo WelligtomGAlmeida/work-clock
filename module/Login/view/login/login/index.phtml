@@ -1,0 +1,36 @@
+<?php
+
+$title = 'Login';
+$this->headTitle($title);
+
+$form = $this->form;
+$form->setAttribute('action', $this->url('login', array('action' => 'index')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+?>
+
+<div class="col-md-4">
+    <div class="col-md-12">
+        <?php echo $this->escapeHtml($title); ?>
+    </div>
+    <div class="Col-md-4">
+        Usuário
+    </div>
+    <div class="Col-md-8">
+        <?php echo $this->formRow($form->get('user_name')); ?>
+    </div>
+    <div class="Col-md-4">
+        Senha
+    </div>
+    <div class="Col-md-8">
+        <?php echo $this->formRow($form->get('senha')); ?>
+    </div>
+    <div class="col-md-12">
+        <?php echo $this->formSubmit($form->get('submit')); ?>
+    </div>
+</div>
+
+<?php 
+    echo $this->form()->closeTag();
+?>

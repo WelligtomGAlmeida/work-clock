@@ -6,7 +6,10 @@ return array(
         'Empresas',
         'Funcionarios', 
         'VariaveisEmpresa',
-        'AfastarFuncionario',          
+        'AfastarFuncionario',
+        //'Ponto',
+        //'Atestado',
+        'Login',
     ),
 
     // These are various options for the listeners attached to the ModuleManager
