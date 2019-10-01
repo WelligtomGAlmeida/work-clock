@@ -2,6 +2,8 @@
 namespace Login\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Login\Model\Login;
+use Zend\Authentication\AuthenticationService;
 
 class LoginTable
 {
@@ -12,56 +14,48 @@ class LoginTable
         $this->tableGateway = $tableGateway;
     }
 
-    public function fetchAll()
+    public static function login(Login $login)
     {
-        $resultSet = $this->tableGateway->select();
-        return $resultSet;
-    }
+        $user_name = $login->user_name;
+        $senha = $login->senha;
 
-    public function getLogin($id)
-    {
-        $id  = (int) $id;
-        $rowset = $this->tableGateway->select(array('id' => $id));
+        $rowset = $this->tableGateway->select(array(
+            'user_name' => $user_name, 
+            'senha' => $senha
+        ));
+
         $row = $rowset->current();
         if (!$row) {
-            throw new \Exception("Não foi possível encontrar a empresa com id $id");
+            throw new \Exception("Usuário ou senha incorretas");
         }
         return $row;
-    }
+        
+        /*$auth = new AuthenticationService();
 
-    public function saveLogin(Login $login)
-    {
-        $data = array(
-            'razao_social' => $login->razao_social,
-            'cnpj' => $login->cnpj,
-            'telefone_fixo' => $login->telefone_fixo,
-            'telefone_celular_1' => $login->telefone_celular_1,
-            'telefone_celular_2' => $login->telefone_celular_2,
-            'email' => $login->email,
-            'data_cadastro' => $login->data_cadastro,
-            'cep' => $login->cep,
-            'cidade' => $login->cidade,
-            'uf' => $login->uf,
-            'logradouro' => $login->logradouro,
-            'numero' => $login->numero,
-            'bairro' => $login->bairro,
-            'complemento' => $login->complemento
-        );
+        $loginForm = new Default_Forw
 
-        $id = (int) $login->id;
-        if ($id == 0) {
-            $this->tableGateway->insert($data);
-        } else {
-            if ($this->getLogin($id)) {
-                $this->tableGateway->update($data, array('id' => $id));
-            } else {
-                throw new \Exception('Esta empresa não existe');
+        if ($loginForm->isValid()) {
+
+            $adapter = new Zend\Auth\Adapter\DbTable(
+                $db,
+                'funcionarios',
+                'user_name',
+                'senha'
+                );
+
+            $adapter->setIdentity($loginForm->getValue('user_name'));
+            $adapter->setCredential($loginForm->getValue('senha'));
+
+            $result = $auth->authenticate($adapter);
+
+            if ($result->isValid()) {
+                //$this->_helper->FlashMessenger('Successful Login');
+                $this->redirect()->toRoute('funcionarios');
+                return;
             }
-        }
-    }
 
-    public function deleteLogin($id)
-    {
-        $this->tableGateway->delete(array('id' => $id));
+        }
+
+        $this->view->loginForm = $loginForm;*/
     }
 }

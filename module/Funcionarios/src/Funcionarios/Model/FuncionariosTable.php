@@ -50,13 +50,13 @@ class FuncionariosTable
             'senha' => $funcionarios->senha,
             'data_admissao' => $funcionarios->data_admissao,
             'empresa_id' => $funcionarios->empresa_id,
-            'cep' => $empresas->cep,
-            'cidade' => $empresas->cidade,
-            'uf' => $empresas->uf,
-            'logradouro' => $empresas->logradouro,
-            'numero' => $empresas->numero,
-            'bairro' => $empresas->bairro,
-            'complemento' => $empresas->complemento            
+            'cep' => $funcionarios->cep,
+            'cidade' => $funcionarios->cidade,
+            'uf' => $funcionarios->uf,
+            'logradouro' => $funcionarios->logradouro,
+            'numero' => $funcionarios->numero,
+            'bairro' => $funcionarios->bairro,
+            'complemento' => $funcionarios->complemento            
         );
 
         $id = (int) $funcionarios->id;
