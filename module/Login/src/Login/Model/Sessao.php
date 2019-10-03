@@ -16,9 +16,6 @@ class Sessao {
 
     public function login($dados){
 
-      
-     
-
             ## Serviço de autenticar e manter a sessão
             $auth = new AuthenticationService();
 
@@ -44,19 +41,17 @@ class Sessao {
                 var_dump($ex->getMessage());
                 //return array("Erro ao realizar autenticação", $ex->getMessage(), array() , Mensagem::Danger);
             }
-            
 
             if ( $result->isValid() ) {
 
-                return array("Login realizado com sucesso!");
+                return array(   "cod" => "1",
+                                "msg" => "Login realizado com sucesso!");
             
             } else {
-            
                 //
-                return array("Usuário ou senha incorreto!", "Usuário ou senha incorreto!");
-            
+                return array(   "cod" => "2",
+                                "msg" => "Usuário ou senha incorreto!");        
             }
-
     }
 
     public function logout(){
@@ -65,7 +60,8 @@ class Sessao {
 
         $auth = new AuthenticationService($sessionStorage);
 
-        if ($auth->hasIdentity()) { 
+        if ($auth->hasIdentity())
+        { 
             $auth->clearIdentity(); 
         } 
 

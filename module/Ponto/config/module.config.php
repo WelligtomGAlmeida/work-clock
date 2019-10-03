@@ -2,22 +2,22 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'Empresas\Controller\Empresas' => 'Empresas\Controller\EmpresasController',
+            'Ponto\Controller\Ponto' => 'Ponto\Controller\PontoController',
         ),
     ),
 
     'router' => array(
         'routes' => array(
-            'empresas' => array(
+            'ponto' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/empresas[/][:action][/:id]',
+                    'route'    => '/ponto[/][:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
-                        'controller' => 'Empresas\Controller\Empresas',
+                        'controller' => 'Ponto\Controller\Ponto',
                         'action'     => 'index',
                     ),
                 ),
@@ -27,7 +27,7 @@ return array(
 
     'view_manager' => array(
         'template_path_stack' => array(
-            'empresas' => __DIR__ . '/../view',
+            'ponto' => __DIR__ . '/../view',
         ),
     ),
 );

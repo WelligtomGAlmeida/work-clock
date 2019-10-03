@@ -1,11 +1,9 @@
 <?php
 namespace Login\Controller;
 
-use Exception;
 use Login\Form\LoginForm;
 use Login\Model\Login;
 use Login\Model\Sessao;
-use Login\Model\LoginTable;
 use Zend\Mvc\Controller\AbstractActionController;
 
 
@@ -17,11 +15,7 @@ class LoginController extends AbstractActionController
     {
         $dbAdapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
         $sessao = new Sessao($dbAdapter);
-        var_dump($sessao->login(array(
-            "login" => "userhjki",
-            "senha" => "sgbfisb",
-        )));
-        exit();
+
         $form = new LoginForm();
         $form->get('submit')->setValue('Entrar');
 
@@ -34,17 +28,16 @@ class LoginController extends AbstractActionController
             if ($form->isValid()) {
                 $login->exchangeArray($form->getData());
 
-                try{
-                    LoginTable::login($login);
+                $result = $sessao->login(array(
+                    "login" => $login->user_name,
+                    "senha" => $login->senha,
+                ));
 
-                }
-                catch(Exception $e)
-                {
-                    var_dump("Ocorreu um erro: " + $e);
-                    exit();
-                }
-                // Redirect to list of funcionarioss
-                return $this->redirect()->toRoute('login');
+                if($result["cod"] == "1")
+                    return $this->redirect()->toRoute('funcionarios');
+                else
+                    return array(   'form' => $form,
+                                    'msg'=> $result["msg"]);
             }
         }
         return array('form' => $form);

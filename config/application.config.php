@@ -7,7 +7,7 @@ return array(
         'Funcionarios', 
         'VariaveisEmpresa',
         'AfastarFuncionario',
-        //'Ponto',
+        'Ponto',
         //'Atestado',
         'Login',
     ),

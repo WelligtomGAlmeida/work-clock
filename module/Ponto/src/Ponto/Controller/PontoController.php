@@ -1,59 +1,60 @@
 <?php
-namespace Empresas\Controller;
+namespace Ponto\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Empresas\Model\Empresas;
-use Empresas\Form\EmpresasForm;
+use Ponto\Model\Ponto;
+use Ponto\Form\PontoForm;
 
-class EmpresasController extends AbstractActionController
+class PontoController extends AbstractActionController
 {
-    protected $empresasTable;
+    protected $pontoTable;
 
-    public function getEmpresasTable()
+    public function getPontoTable()
     {
-        if (!$this->empresasTable) {
+        if (!$this->pontoTable) {
             $sm = $this->getServiceLocator();
-            $this->empresasTable = $sm->get('Empresas\Model\EmpresasTable');
+            $this->pontoTable = $sm->get('Ponto\Model\PontoTable');
         }
-        return $this->empresasTable;
+        return $this->pontoTable;
     }
 
     public function indexAction()
     {
         return new ViewModel(array(
-            'empresas' => $this->getEmpresasTable()->fetchAll(),
+            'ponto' => $this->getPontoTable()->fetchAll(),
         ));
     }
 
     public function createAction()
     {
-        $form = new EmpresasForm();
-        $form->get('submit')->setValue('Create');
+        $form = new PontoForm();
+        $form->get('submit')->setValue('Registrar Entrada');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $empresas = new Empresas();
-            $form->setInputFilter($empresas->getInputFilter());
+            $ponto = new Ponto();
+            //$form->setInputFilter($ponto->getInputFilter());
             $form->setData($request->getPost());
+            $ponto->hora_entrada = date('Y-m-d H:i:s');
+            $ponto->funcionario_id = '1';
 
-            if ($form->isValid()) {
-                $empresas->exchangeArray($form->getData());
+            $this->getPontoTable()->savePonto($ponto);
 
-                $this->getEmpresasTable()->saveEmpresas($empresas);
-
-                // Redirect to list of empresass
-                return $this->redirect()->toRoute('empresas');
-            }
+            // Redirect to list of pontos
+            return $this->redirect()->toRoute('ponto');
+            
         }
-        return array('form' => $form);
+        return array(
+            'form' => $form
+        );
     }
 
     public function updateAction()
     {
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
-            return $this->redirect()->toRoute('empresas', array(
+            return $this->redirect()->toRoute('ponto', array(
                 'action' => 'create'
             ));
         }
@@ -61,28 +62,28 @@ class EmpresasController extends AbstractActionController
         // Requisita um ALbum com id específico. Uma exceção é disparada caso
         // ele não seja encontrado, nesse caso redirecione para a págin incial.
         try {
-            $empresas = $this->getEmpresasTable()->getEmpresas($id);
+            $ponto = $this->getPontoTable()->getPonto($id);
         }
         catch (\Exception $ex) {
-            return $this->redirect()->toRoute('empresas', array(
+            return $this->redirect()->toRoute('ponto', array(
                 'action' => 'index'
             ));
         }
 
-        $form  = new EmpresasForm();
-        $form->bind($empresas);
+        $form  = new PontoForm();
+        $form->bind($ponto);
         $form->get('submit')->setAttribute('value', 'Update');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $form->setInputFilter($empresas->getInputFilter());
+            $form->setInputFilter($ponto->getInputFilter());
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
-                $this->getEmpresasTable()->saveEmpresas($empresas);
+                $this->getPontoTable()->savePonto($ponto);
 
                 // Redireciona para a lista de albuns
-                return $this->redirect()->toRoute('empresas');
+                return $this->redirect()->toRoute('ponto');
             }
         }
 
@@ -97,7 +98,7 @@ class EmpresasController extends AbstractActionController
     {
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
-            return $this->redirect()->toRoute('empresas');
+            return $this->redirect()->toRoute('ponto');
         }
 
         $request = $this->getRequest();
@@ -106,16 +107,16 @@ class EmpresasController extends AbstractActionController
 
             if ($del == 'Yes') {
                 $id = (int) $request->getPost('id');
-                $this->getEmpresasTable()->deleteEmpresas($id);
+                $this->getPontoTable()->deletePonto($id);
             }
 
             // Redireciona para a lista de albuns
-            return $this->redirect()->toRoute('empresas');
+            return $this->redirect()->toRoute('ponto');
         }
 
         return array(
             'id'    => $id,
-            'empresas' => $this->getEmpresasTable()->getEmpresas($id)
+            'ponto' => $this->getPontoTable()->getPonto($id)
         );
     }
 }

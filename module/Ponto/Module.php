@@ -1,10 +1,10 @@
 <?php
-namespace Empresas;
+namespace Ponto;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Empresas\Model\Empresas;
-use Empresas\Model\EmpresasTable;
+use Ponto\Model\Ponto;
+use Ponto\Model\PontoTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -33,16 +33,16 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return array(
             'factories' => array(
-                'Empresas\Model\EmpresasTable' =>  function($sm) {
-                    $tableGateway = $sm->get('EmpresasTableGateway');
-                    $table = new EmpresasTable($tableGateway);
+                'Ponto\Model\PontoTable' =>  function($sm) {
+                    $tableGateway = $sm->get('PontoTableGateway');
+                    $table = new PontoTable($tableGateway);
                     return $table;
                 },
-                'EmpresasTableGateway' => function ($sm) {
+                'PontoTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Empresas());
-                    return new TableGateway('empresas', $dbAdapter, null, $resultSetPrototype);
+                    $resultSetPrototype->setArrayObjectPrototype(new Ponto());
+                    return new TableGateway('ponto_funcionario', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );

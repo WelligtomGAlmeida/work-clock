@@ -1,11 +1,9 @@
 <?php
-namespace Login\Model;
+namespace Funcionarios\Model;
 
 use Zend\Db\TableGateway\TableGateway;
-use Login\Model\Login;
-use Zend\Authentication\AuthenticationService;
 
-class LoginTable
+class FuncionariosTable
 {
     protected $tableGateway;
 
@@ -14,48 +12,67 @@ class LoginTable
         $this->tableGateway = $tableGateway;
     }
 
-    public static function login(Login $login)
+    public function fetchAll()
     {
-        $user_name = $login->user_name;
-        $senha = $login->senha;
+        $resultSet = $this->tableGateway->select();
+        return $resultSet;
+    }
 
-        $rowset = $this->tableGateway->select(array(
-            'user_name' => $user_name, 
-            'senha' => $senha
-        ));
-
+    public function getFuncionarios($id)
+    {
+        $id  = (int) $id;
+        $rowset = $this->tableGateway->select(array('id' => $id));
         $row = $rowset->current();
         if (!$row) {
-            throw new \Exception("Usuário ou senha incorretas");
+            throw new \Exception("Could not find row $id");
         }
         return $row;
-        
-        /*$auth = new AuthenticationService();
+    }
 
-        $loginForm = new Default_Forw
+    public function saveFuncionarios(Funcionarios $funcionarios)
+    {
+        $data = array(
+            'nome' => $funcionarios->nome,
+            'sexo' => $funcionarios->sexo,
+            'data_nascimento' => $funcionarios->data_nascimento,
+            'rg' => $funcionarios->rg,
+            'cpf' => $funcionarios->cpf,
+            'pis_nis' => $funcionarios->pis_nis,
+            'telefone_fixo' => $funcionarios->telefone_fixo,
+            'telefone_celular_1' => $funcionarios->telefone_celular_1,
+            'telefone_celular_2' => $funcionarios->telefone_celular_2,
+            'email' => $funcionarios->email,
+            'salario' => $funcionarios->salario,
+            'sindicato' => $funcionarios->sindicato,
+            'funcao' => $funcionarios->funcao,
+            'perfil' => $funcionarios->perfil ,
+            'user_name' => $funcionarios->user_name,
+            'senha' => $funcionarios->senha,
+            'data_admissao' => $funcionarios->data_admissao,
+            'empresa_id' => $funcionarios->empresa_id,
+            'cep' => $funcionarios->cep,
+            'cidade' => $funcionarios->cidade,
+            'uf' => $funcionarios->uf,
+            'logradouro' => $funcionarios->logradouro,
+            'numero' => $funcionarios->numero,
+            'bairro' => $funcionarios->bairro,
+            'complemento' => $funcionarios->complemento            
+        );
 
-        if ($loginForm->isValid()) {
-
-            $adapter = new Zend\Auth\Adapter\DbTable(
-                $db,
-                'funcionarios',
-                'user_name',
-                'senha'
-                );
-
-            $adapter->setIdentity($loginForm->getValue('user_name'));
-            $adapter->setCredential($loginForm->getValue('senha'));
-
-            $result = $auth->authenticate($adapter);
-
-            if ($result->isValid()) {
-                //$this->_helper->FlashMessenger('Successful Login');
-                $this->redirect()->toRoute('funcionarios');
-                return;
+        $id = (int) $funcionarios->id;
+        if ($id == 0) {
+            $this->tableGateway->insert($data);
+        } else {
+            if ($this->getFuncionarios($id)) {
+                $this->tableGateway->update($data, array('id' => $id));
+            } else {
+                throw new \Exception('Funcionarios id does not exist');
             }
-
         }
+    }
 
-        $this->view->loginForm = $loginForm;*/
+    public function deleteFuncionarios($id)
+    {
+        $this->tableGateway->delete(array('id' => $id));
     }
 }
