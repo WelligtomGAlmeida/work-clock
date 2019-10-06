@@ -33,6 +33,7 @@ class Sessao {
 
             ## Sessão de autenticação
             $sessionStorage = new SessionStorage('painel');
+            $sessionStorage->opa = 'Aqui deu certo';
             $auth->setStorage($sessionStorage);
             
             try {
@@ -43,6 +44,10 @@ class Sessao {
             }
 
             if ( $result->isValid() ) {
+
+                $resultado = LoginTable::verificaPermissao($this->adapter,$dados["login"],$dados["senha"]);    
+
+                $_SESSION['funcionario'] = $resultado;
 
                 return array(   "cod" => "1",
                                 "msg" => "Login realizado com sucesso!");
