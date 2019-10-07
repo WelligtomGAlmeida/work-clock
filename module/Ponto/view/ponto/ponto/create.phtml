@@ -2,6 +2,8 @@
 
 $title = 'Registrar Ponto';
 $this->headTitle($title);
+
+$trava = $this->trava;
 ?>
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
@@ -51,7 +53,10 @@ echo $this->formRow($form->get('hora_entrada'));
 echo $this->formRow($form->get('hora_saida'));
 ?>
 <div class="col-md-12" style="text-align:right;">
-    <?php echo $this->formSubmit($form->get('submit'));?>
+    <?php 
+        if($trava == 0)
+            echo $this->formSubmit($form->get('submit'));
+    ?>
 </div>
 
 <?php echo $this->form()->closeTag();?>

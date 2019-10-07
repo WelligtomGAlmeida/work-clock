@@ -1,20 +1,47 @@
 <?php
-// module/Album/view/album/album/edit.phtml:
 
-$title = 'Alterar ponto';
+$title = 'Registrar Ponto';
 $this->headTitle($title);
 ?>
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        window.setInterval(RetornaDataHoraAtual, 1000);
+    });
+
+    function RetornaDataHoraAtualFormatado()
+    {
+        var dNow = new Date();
+        var localdate = dNow.getFullYear() + '-' + dNow.getMonth() + '-'+dNow.getDate() + ' ' + dNow.getHours() + ':' + dNow.getMinutes() + ':' + dNow.getSeconds() + '.000';
+        
+        return localdate;
+    }
+
+    function RetornaDataHoraAtual()
+    {
+        dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
+        monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto","setembro","outubro", "novembro", "dezembro")
+
+        var dNow = new Date();
+        var localdate = dNow.getDate() + ' de ' + monName[ dNow.getMonth() ] + ' de ' + dNow.getFullYear() + '   ' + dNow.getHours() + ':' + dNow.getMinutes() + ':' + dNow.getSeconds();
+        
+        $("#data").text(localdate);
+    }
+</script>
+
 <h1><?php echo $this->escapeHtml($title); ?></h1>
+<div class="col-md-12">
+    <div class="col-md-5" style="text-align:right;margin:50px;color:#5d669c;">
+        <h4 id="data"></h4>
+    </div>
+</div>
 
 <?php
+
 $form = $this->form;
-$form->setAttribute('action', $this->url(
-    'ponto',
-    array(
-        'action' => 'update',
-        'id'     => $this->id,
-    )
-));
+$form->setAttribute('action', $this->url('ponto', array('action' => 'update')));
 $form->prepare();
 
 echo $this->form()->openTag($form);
@@ -22,5 +49,10 @@ echo $this->formHidden($form->get('id'));
 echo $this->formRow($form->get('funcionario_id'));
 echo $this->formRow($form->get('hora_entrada'));
 echo $this->formRow($form->get('hora_saida'));
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
+?>
+<div class="col-md-12" style="text-align:right;">
+    <?php echo $this->formSubmit($form->get('submit'));?>
+</div>
+
+<?php echo $this->form()->closeTag();?>
+

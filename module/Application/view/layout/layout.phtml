@@ -30,35 +30,67 @@
     <body>
         <nav class="navbar navbar-expand-md navbar-principal navbar-light">
             <div class="container">
-            <a class="navbar-brand font-weight-bold" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Skeleton Application') ?></a>
+                <a class="navbar-brand font-weight-bold" href="<?php echo $this->url('login') ?>"><img src="<?php echo $this->basePath('img/logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Skeleton Application') ?></a>
+                <?php
+                    if(isset($_SESSION['funcionario']))
+                    {
+                ?>
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(página principal)</span></a>
+                            <a class="nav-link" href="<?php echo $this->url('empresas') ?>"><b>Empresa</b></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <b>Funcionários</b>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="<?php echo $this->url('funcionarios') ?>">Alterar Funcionário</a>
+                            <a class="dropdown-item" href="#">Abonar Falta</a>
+                            <a class="dropdown-item" href="#">Afastar Funcionário</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="#"><b>Relatórios</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="#"><b>Meu Perfil</b></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Home</a>
+                            <a class="nav-link" href="<?php echo $this->url('login') ?>"><b>Sair</b></a>
                         </li>
                     </ul>
                 </div>
+                <?php
+                    }
+                ?>
+
             </div>
         </nav>
+        <?php
+            if(isset($_SESSION['funcionario']))
+            {
+        ?>
+        <nav class="navbar navbar-expand-md navbar-saudacao" style="background:#dbdbce;">
+            <div class="container">
+                <div>
+                    Seja bem vindo 
+                    <b style="color:#5d669c;text-align:left;">
+                        <?php echo isset($_SESSION['funcionario']->nome)?$_SESSION['funcionario']->nome:''; ?>
+                    </b>
+                </div> 
+            </div>
+        </nav>
+        <?php
+            }
+        ?>
 
         <div class="container main-content">
             <?php echo $this->content; ?>
             <hr>
 
-            <footer>
-                <p>&copy; <?php echo date('Y') ?> by FATEC - Ourinhos <?php echo $this->translate('All rights reserved.') ?></p>
+            <footer align="center">
+                <p>&copy; 2019 - <?php echo date('Y') ?> by FATEC - Ourinhos <?php echo $this->translate('All rights reserved.') ?></p>
             </footer>
         </div>
         <?php echo $this->inlineScript() ?>

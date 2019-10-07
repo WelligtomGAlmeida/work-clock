@@ -41,7 +41,7 @@ class Login
                         'name'    => 'NotEmpty',
                         'options' => array(
                             'messages' => array(
-                                'isEmpty' => 'É obrigatório o preenchimento do campo Usuário'
+                                'isEmpty' => 'É obrigatório Informar o Usuário'
                             )
                         ),
                     ),
@@ -60,7 +60,7 @@ class Login
                         'name'    => 'NotEmpty',
                         'options' => array(
                             'messages' => array(
-                                'isEmpty' => 'É obrigatório o preenchimento do campo Senha'
+                                'isEmpty' => 'É obrigatório informar a Senha'
                             )
                         ),
                     ),

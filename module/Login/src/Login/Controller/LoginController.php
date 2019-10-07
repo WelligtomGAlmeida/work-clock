@@ -18,6 +18,7 @@ class LoginController extends AbstractActionController
 
     public function indexAction()
     {
+        $this->logout();
         $sessao = new Sessao($this->getAdapter());
         //$sessionStorage = new SessionStorage('painel');
 
@@ -40,7 +41,7 @@ class LoginController extends AbstractActionController
 
                 if($result["cod"] == "1")
                 {
-                    return $this->redirect()->toRoute('ponto', array('action' => 'create', 'id' => $_SESSION['funcionario']->id));
+                    return $this->redirect()->toRoute('ponto', array('action' => 'direcionaPonto', 'id' => $_SESSION['funcionario']->id));
                 }
                 else
                     return array(   'form' => $form,
@@ -49,5 +50,12 @@ class LoginController extends AbstractActionController
         }
         return array('form' => $form);
 
+    }
+
+    public function logout()
+    {
+        $_SESSION = array();
+        
+        Sessao::logout();
     }
 }

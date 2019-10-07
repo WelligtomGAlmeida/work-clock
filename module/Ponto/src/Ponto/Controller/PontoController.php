@@ -5,10 +5,18 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Ponto\Model\Ponto;
 use Ponto\Form\PontoForm;
+use Ponto\Model\PontoTable;
 
 class PontoController extends AbstractActionController
 {
     protected $pontoTable;
+
+    public function getAdapter()
+    {
+        $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+
+        return $adapter;
+    }
 
     public function getPontoTable()
     {
@@ -26,97 +34,76 @@ class PontoController extends AbstractActionController
         ));
     }
 
+    public function direcionaPontoAction()
+    {
+        $resposta = PontoTable::verificaPonto($this->getAdapter());
+
+        if($resposta['acao'] == '1')
+        {
+            return $this->redirect()->toRoute('ponto', array('action' => 'create'));
+        }
+        else if($resposta['acao'] == '2')
+        {
+            return $this->redirect()->toRoute('ponto', array('action' => 'update'));
+        }
+        else
+        {
+            return $this->redirect()->toRoute('ponto', array('action' => 'create'));
+        }
+    }
+
     public function createAction()
     {
         $form = new PontoForm();
         $form->get('submit')->setValue('Registrar Entrada');
+        $resultado = PontoTable::travaRegistro($this->getAdapter());
+        $trava = $resultado['contador'] >= 3 ? 1 : 0;
 
         $request = $this->getRequest();
         if ($request->isPost()) {
             $ponto = new Ponto();
-            //$form->setInputFilter($ponto->getInputFilter());
             $form->setData($request->getPost());
+            date_default_timezone_set('America/Sao_Paulo');
             $ponto->hora_entrada = date('Y-m-d H:i:s');
-            $ponto->funcionario_id = '1';
+            $ponto->funcionario_id = $_SESSION['funcionario']->id;
 
             $this->getPontoTable()->savePonto($ponto);
 
-            // Redirect to list of pontos
-            return $this->redirect()->toRoute('ponto');
+            return $this->redirect()->toRoute('ponto', array('action' => 'direcionaPonto'));
             
         }
         return array(
-            'form' => $form
+            'form' => $form,
+            'trava' => $trava
         );
     }
 
     public function updateAction()
     {
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if (!$id) {
-            return $this->redirect()->toRoute('ponto', array(
-                'action' => 'create'
-            ));
-        }
-
-        // Requisita um ALbum com id específico. Uma exceção é disparada caso
-        // ele não seja encontrado, nesse caso redirecione para a págin incial.
-        try {
-            $ponto = $this->getPontoTable()->getPonto($id);
-        }
-        catch (\Exception $ex) {
-            return $this->redirect()->toRoute('ponto', array(
-                'action' => 'index'
-            ));
-        }
-
-        $form  = new PontoForm();
-        $form->bind($ponto);
-        $form->get('submit')->setAttribute('value', 'Update');
+        $form = new PontoForm();
+        $form->get('submit')->setValue('Registrar Saída');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $form->setInputFilter($ponto->getInputFilter());
+            $ponto = new Ponto();
+
             $form->setData($request->getPost());
+            date_default_timezone_set('America/Sao_Paulo');
 
-            if ($form->isValid()) {
-                $this->getPontoTable()->savePonto($ponto);
+            $result = PontoTable::getPontoUpdate($this->getAdapter());
+            $ponto->funcionario_id = $_SESSION['funcionario']->id;
+            $ponto->hora_entrada = $result['hora_entrada'];
+            $ponto->id = $result['id'];
+            $ponto->hora_saida = date('Y-m-d H:i:s');
+            
+            $this->getPontoTable()->savePonto($ponto);
 
-                // Redireciona para a lista de albuns
-                return $this->redirect()->toRoute('ponto');
-            }
+            return $this->redirect()->toRoute('ponto', array('action' => 'direcionaPonto'));
+            
         }
-
         return array(
-            'id' => $id,
-            'form' => $form,
+            'form' => $form
         );
 
-    }
-
-    public function deleteAction()
-    {
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if (!$id) {
-            return $this->redirect()->toRoute('ponto');
-        }
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $del = $request->getPost('delete', 'No');
-
-            if ($del == 'Yes') {
-                $id = (int) $request->getPost('id');
-                $this->getPontoTable()->deletePonto($id);
-            }
-
-            // Redireciona para a lista de albuns
-            return $this->redirect()->toRoute('ponto');
-        }
-
-        return array(
-            'id'    => $id,
-            'ponto' => $this->getPontoTable()->getPonto($id)
-        );
     }
 }

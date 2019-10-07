@@ -59,7 +59,7 @@ class Sessao {
             }
     }
 
-    public function logout(){
+    public static function logout(){
 
         $sessionStorage = new SessionStorage('painel');
 

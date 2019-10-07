@@ -1,15 +1,20 @@
 .navbar-principal {
-    background: #b9c0e8;
+    background: #6f7c91;
+    padding: 0 !important;
+}
+
+.navbar-saudacao{
+    background: #dbdbce ;
     padding: 0 !important;
 }
 
 .navbar .navbar-brand {
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-size: 28px
 }
 
 a.nav-link {
-    color: #fff
+    color: rgb(255, 255, 255)
 }
 
 ul.navbar-nav {
@@ -19,4 +24,8 @@ ul.navbar-nav {
 
 .container.main-content {
     margin-top: 2rem;
+}
+
+.div-login{
+    background:#dbdbce;
 }

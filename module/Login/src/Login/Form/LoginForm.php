@@ -14,10 +14,18 @@ class LoginForm extends Form
         $this->add(array(
             'name' => 'user_name',
             'type' => 'Text',
+            'attributes' => array(
+                'style' => 'width:250px;height:35px;border:none;',
+                'placeholder' => '  Usuário',
+            ),
         ));
         $this->add(array(
-            'name' => 'senha',
-            'type' => 'Password',
+            'name'  => 'senha',
+            'type'  => 'Password',
+            'attributes' => array(
+                'style' => 'width:250px;height:35px;border:none;',
+                'placeholder' => '  Senha',
+            ),
         ));
         $this->add(array(
             'name' => 'submit',
@@ -25,6 +33,8 @@ class LoginForm extends Form
             'attributes' => array(
                 'value' => 'Go',
                 'id' => 'submitbutton',
+                'class' => 'btn btn-secondary btn-lg',
+                'style' => 'background-color:#32CD32;border:none;width:250px;margin:30px;',
             ),
         ));
     }
