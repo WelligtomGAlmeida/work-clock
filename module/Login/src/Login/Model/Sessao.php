@@ -48,6 +48,7 @@ class Sessao {
                 $resultado = LoginTable::verificaPermissao($this->adapter,$dados["login"],$dados["senha"]);    
 
                 $_SESSION['funcionario'] = $resultado;
+                $_SESSION['empresa'] = 4;
 
                 return array(   "cod" => "1",
                                 "msg" => "Login realizado com sucesso!");

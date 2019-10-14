@@ -20,13 +20,11 @@ class Funcionarios
     public $telefone_celular_2;
     public $email;
     public $salario;
-    public $sindicato;
     public $funcao;
     public $perfil;
     public $user_name;
     public $senha;
     public $data_admissao;
-    public $empresa_id;
     public $cep;
     public $cidade;
     public $uf;
@@ -34,6 +32,7 @@ class Funcionarios
     public $numero;
     public $bairro;
     public $complemento;
+    public $data_cadastro;
     protected $inputFilter;
 
     public function exchangeArray($data)
@@ -50,21 +49,19 @@ class Funcionarios
         $this->telefone_celular_2 = (!empty($data['telefone_celular_2'])) ? $data['telefone_celular_2'] : null;
         $this->email = (!empty($data['email'])) ? $data['email'] : null;
         $this->salario = (!empty($data['salario'])) ? $data['salario'] : null;
-        $this->sindicato = (!empty($data['sindicato'])) ? $data['sindicato'] : null;
         $this->funcao = (!empty($data['funcao'])) ? $data['funcao'] : null;
+        $this->cep = (!empty($data['cep'])) ? $data['cep'] : null;
         $this->perfil = (!empty($data['perfil'])) ? $data['perfil'] : null;
         $this->user_name = (!empty($data['user_name'])) ? $data['user_name'] : null;
         $this->senha = (!empty($data['senha'])) ? $data['senha'] : null;
         $this->data_admissao = (!empty($data['data_admissao'])) ? $data['data_admissao'] : null;
-        $this->empresa_id = (!empty($data['empresa_id'])) ? $data['empresa_id'] : null;
-        $this->cep = (!empty($data['cep'])) ? $data['cep'] : null;
         $this->cidade = (!empty($data['cidade'])) ? $data['cidade'] : null;
         $this->uf = (!empty($data['uf'])) ? $data['uf'] : null;
         $this->logradouro = (!empty($data['logradouro'])) ? $data['logradouro'] : null;
         $this->numero = (!empty($data['numero'])) ? $data['numero'] : null;
         $this->bairro = (!empty($data['bairro'])) ? $data['bairro'] : null;
         $this->complemento = (!empty($data['complemento'])) ? $data['complemento'] : null;
-        
+        $this->data_cadastro = (!empty($data['data_cadastro'])) ? $data['data_cadastro'] : null;
     }
 
     public function setInputFilter(InputFilterInterface $inputFilter)
@@ -296,25 +293,6 @@ class Funcionarios
             )));
 
             $inputFilter->add($factory->createInput(array(
-                'name'     => 'sindicato',
-                'required' => true,
-                'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name'    => 'NotEmpty',
-                        'options' => array(
-                            'messages' => array(
-                                'isEmpty' => 'É obrigatório o preenchimento do campo data de nascimento'
-                            )
-                        ),
-                    ),
-                ),
-            )));
-
-            $inputFilter->add($factory->createInput(array(
                 'name'     => 'funcao',
                 'required' => true,
                 'filters'  => array(
@@ -406,18 +384,8 @@ class Funcionarios
             )));
 
             $inputFilter->add($factory->createInput(array(
-                'name'     => 'empresa_id',
-                'required' => true,
-                'validators' => array(
-                    array(
-                        'name'    => 'NotEmpty',
-                        'options' => array(
-                            'messages' => array(
-                                'isEmpty' => 'É obrigatório o preenchimento do campo data de nascimento'
-                            )
-                        ),
-                    ),
-                ),
+                'name'     => 'data_cadastro',
+                'required' => false,
             )));
 
             $inputFilter->add($factory->createInput(array(

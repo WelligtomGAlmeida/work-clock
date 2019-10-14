@@ -20,12 +20,18 @@ class EmpresasForm extends Form
             'options' => array(
                 'label' => 'Razão Social',
             ),
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
         ));
         $this->add(array(
             'name' => 'cnpj',
             'type' => 'Text',
             'options' => array(
                 'label' => 'CNPJ',
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
@@ -34,12 +40,18 @@ class EmpresasForm extends Form
             'options' => array(
                 'label' => 'Telefone Fixo',
             ),
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
         ));
         $this->add(array(
             'name' => 'telefone_celular_1',
             'type' => 'Text',
             'options' => array(
                 'label' => 'Celular 1',
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
@@ -48,12 +60,18 @@ class EmpresasForm extends Form
             'options' => array(
                 'label' => 'Celular 2',
             ),
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
         ));
         $this->add(array(
             'name' => 'email',
             'type' => 'Text',
             'options' => array(
                 'label' => 'E-mail',
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
@@ -62,12 +80,18 @@ class EmpresasForm extends Form
             'options' => array(
                 'label' => 'Data de Cadastro',
             ),
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
         ));
         $this->add(array(
             'name' => 'cep',
             'type' => 'Text',
             'options' => array(
                 'label' => 'CEP',
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
@@ -76,12 +100,18 @@ class EmpresasForm extends Form
             'options' => array(
                 'label' => 'Cidade',
             ),
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
         ));
         $this->add(array(
             'name' => 'uf',
             'type' => 'Text',
             'options' => array(
                 'label' => 'UF',
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
@@ -90,12 +120,18 @@ class EmpresasForm extends Form
             'options' => array(
                 'label' => 'Logradouro',
             ),
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
         ));
         $this->add(array(
             'name' => 'numero',
             'type' => 'Text',
             'options' => array(
                 'label' => 'Número',
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
@@ -104,12 +140,18 @@ class EmpresasForm extends Form
             'options' => array(
                 'label' => 'Bairro',
             ),
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
         ));
         $this->add(array(
             'name' => 'complemento',
             'type' => 'Text',
             'options' => array(
                 'label' => 'Complemento',
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
@@ -118,6 +160,7 @@ class EmpresasForm extends Form
             'attributes' => array(
                 'value' => 'Go',
                 'id' => 'submitbutton',
+                'class' => 'btn btn-success btn-lg col-md-2 '
             ),
         ));
     }

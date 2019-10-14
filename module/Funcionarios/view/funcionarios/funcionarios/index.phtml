@@ -5,11 +5,11 @@ $title = 'Funcionários';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
-<p>
-    <a href="<?php echo $this->url('funcionarios', array('action'=>'create'));?>">+ Adicionar novo funcionário</a>
+<p style="float:right;" >
+    <a href="<?php echo $this->url('funcionarios', array('action'=>'create'));?>" class="btn btn-success btn-md active" role="button" aria-pressed="true">+ Adicionar novo funcionário</a>
 </p>
 
-<table class="table">
+<table class="table table-striped">
 <tr>
     <th>Id</th>
     <th>Nome</th>
@@ -24,10 +24,12 @@ $this->headTitle($title);
     <td><?php echo $this->escapeHtml($funcionario->cpf);?></td>
     <td><?php echo $this->escapeHtml($funcionario->pis_nis);?></td>
     <td>
-        <a href="<?php echo $this->url('funcionarios',
-            array('action'=>'update', 'id' => $funcionario->id));?>">Alterar</a>
-        <a href="<?php echo $this->url('funcionarios',
-            array('action'=>'delete', 'id' => $funcionario->id));?>">Excluir</a>
+        <div class="float-right">
+            <a href="<?php echo $this->url('funcionarios',
+                array('action'=>'update', 'id' => $funcionario->id));?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Alterar</a>
+            <a href="<?php echo $this->url('funcionarios',
+                array('action'=>'delete', 'id' => $funcionario->id));?>" class="btn btn-danger btn-sm active" role="button" aria-pressed="true">Excluir</a>
+        </div>
     </td>
 </tr>
 <?php endforeach; ?>

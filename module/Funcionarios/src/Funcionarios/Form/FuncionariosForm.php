@@ -21,43 +21,71 @@ class FuncionariosForm extends Form
             'name' => 'nome',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Nome',
+                'label' => 'Nome *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
             'name' => 'sexo',
             'type' => 'Select',
             'options' => array(
-                'label' => 'Sexo',
+                'label' => 'Sexo *',
                 'options' => array('0' => '','M' => 'Masculino','F' => 'Feminino')
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
             'name' => 'data_nascimento',
             'type' => 'Date',
             'options' => array(
-                'label' => 'Nasc',
+                'label' => 'Data de Nascimento *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
+            ),
+        ));
+        $this->add(array(
+            'name' => 'data_cadastro',
+            'type' => 'Hidden',
+            'options' => array(
+                'label' => 'Data de Cadastro *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
             'name' => 'rg',
             'type' => 'Text',
             'options' => array(
-                'label' => 'RG',
+                'label' => 'RG *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control rg',
             ),
         ));
         $this->add(array(
             'name' => 'cpf',
             'type' => 'Text',
             'options' => array(
-                'label' => 'CPF',
+                'label' => 'CPF *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'pis_nis',
             'type' => 'Text',
             'options' => array(
-                'label' => 'PIS/NIS',
+                'label' => 'PIS/NIS *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
@@ -66,12 +94,18 @@ class FuncionariosForm extends Form
             'options' => array(
                 'label' => 'Telefone Fixo',
             ),
+            'attributes' => array(
+                'class' => 'form-control'
+            ),
         ));
         $this->add(array(
             'name' => 'telefone_celular_1',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Celular 1',
+                'label' => 'Celular 1 *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
@@ -80,6 +114,9 @@ class FuncionariosForm extends Form
             'options' => array(
                 'label' => 'Celular 2',
             ),
+            'attributes' => array(
+                'class' => 'form-control'
+            ),
         ));
         $this->add(array(
             'name' => 'email',
@@ -87,105 +124,129 @@ class FuncionariosForm extends Form
             'options' => array(
                 'label' => 'E-mail',
             ),
+            'attributes' => array(
+                'class' => 'form-control'
+            ),
         ));
         $this->add(array(
             'name' => 'salario',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Salário',
+                'label' => 'Salário *',
             ),
-        ));
-        $this->add(array(
-            'name' => 'sindicato',
-            'type' => 'Radio',
-            'options' => array(
-                'label' => 'Paga Sindicato?',
-                'options' => array('1' => 'Sim','0' => 'Não')
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'funcao',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Função',
+                'label' => 'Função *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'perfil',
             'type' => 'Select',
             'options' => array(
-                'label' => 'Perfil',
+                'label' => 'Perfil *',
                 'options' => array('1' => 'Administrador','2' => 'Gerente','3' => 'Funcionário Comum')
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'user_name',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Nome de Usuário',
+                'label' => 'Nome de Usuário *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'senha',
-            'type' => 'Text',
+            'type' => 'password',
             'options' => array(
-                'label' => 'Senha',
+                'label' => 'Senha *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'data_admissao',
             'type' => 'Date',
             'options' => array(
-                'label' => 'Data de Admissao',
+                'label' => 'Data de Admissao *',
             ),
-        ));
-        $this->add(array(
-            'name' => 'empresa_id',
-            'type' => 'Text',
-            'options' => array(
-                'label' => 'Empresa(tmp)',
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'cep',
             'type' => 'Text',
             'options' => array(
-                'label' => 'CEP',
+                'label' => 'CEP *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'cidade',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Cidade',
+                'label' => 'Cidade *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'uf',
             'type' => 'Text',
             'options' => array(
-                'label' => 'UF',
+                'label' => 'UF *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'logradouro',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Logradouro',
+                'label' => 'Logradouro *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'numero',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Número',
+                'label' => 'Número *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'bairro',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Bairro',
+                'label' => 'Bairro *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
@@ -194,6 +255,9 @@ class FuncionariosForm extends Form
             'options' => array(
                 'label' => 'Complemento',
             ),
+            'attributes' => array(
+                'class' => 'form-control'
+            ),
         ));
         $this->add(array(
             'name' => 'submit',
@@ -201,6 +265,7 @@ class FuncionariosForm extends Form
             'attributes' => array(
                 'value' => 'Go',
                 'id' => 'submitbutton',
+                'class' => 'btn btn-success btn-lg col-md-2 '
             ),
         ));
     }

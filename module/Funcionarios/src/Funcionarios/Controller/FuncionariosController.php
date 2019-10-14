@@ -5,6 +5,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Funcionarios\Model\Funcionarios;
 use Funcionarios\Form\FuncionariosForm;
+use Funcionarios\Model\FuncionariosTable;
 
 class FuncionariosController extends AbstractActionController
 {
@@ -19,6 +20,13 @@ class FuncionariosController extends AbstractActionController
         return $this->funcionariosTable;
     }
 
+    public function getAdapter()
+    {
+        $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+
+        return $adapter;
+    }
+
     public function indexAction()
     {
         return new ViewModel(array(
@@ -29,17 +37,16 @@ class FuncionariosController extends AbstractActionController
     public function createAction()
     {
         $form = new FuncionariosForm();
-        $form->get('submit')->setValue('Create');
+        $form->get('submit')->setValue('Salvar');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
             $funcionarios = new Funcionarios();
             $form->setInputFilter($funcionarios->getInputFilter());
             $form->setData($request->getPost());
-            $funcionarios->empresa_id = 4;
-            
             if ($form->isValid()) {
                 $funcionarios->exchangeArray($form->getData());
+                $funcionarios->data_cadastro = date('Y-m-d H:i:s');
                 $this->getFuncionariosTable()->saveFuncionarios($funcionarios);
 
                 // Redirect to list of funcionarioss
@@ -71,7 +78,7 @@ class FuncionariosController extends AbstractActionController
 
         $form  = new FuncionariosForm();
         $form->bind($funcionarios);
-        $form->get('submit')->setAttribute('value', 'Update');
+        $form->get('submit')->setAttribute('value', 'Salvar');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -100,11 +107,13 @@ class FuncionariosController extends AbstractActionController
             return $this->redirect()->toRoute('funcionarios');
         }
 
+        $funcionario = FuncionariosTable::buscarDados($this->getAdapter(),$id);
+
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $del = $request->getPost('delete', 'No');
+            $del = $request->getPost('delete', 'Cancelar');
 
-            if ($del == 'Yes') {
+            if ($del == 'Excluir') {
                 $id = (int) $request->getPost('id');
                 $this->getFuncionariosTable()->deleteFuncionarios($id);
             }
@@ -115,7 +124,7 @@ class FuncionariosController extends AbstractActionController
 
         return array(
             'id'    => $id,
-            'funcionarios' => $this->getFuncionariosTable()->getFuncionarios($id)
+            'funcionario'   => $funcionario,
         );
     }
 }

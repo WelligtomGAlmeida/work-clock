@@ -4,6 +4,7 @@
 $title = 'Alterar Funcionário';
 $this->headTitle($title);
 ?>
+
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 
 <?php
@@ -15,34 +16,118 @@ $form->setAttribute('action', $this->url(
         'id'     => $this->id,
     )
 ));
+
 $form->prepare();
 
 echo $this->form()->openTag($form);
-echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('nome'));
-echo $this->formRow($form->get('sexo'));
-echo $this->formRow($form->get('data_nascimento'));
-echo $this->formRow($form->get('rg'));
-echo $this->formRow($form->get('cpf'));
-echo $this->formRow($form->get('pis_nis'));
-echo $this->formRow($form->get('telefone_fixo'));
-echo $this->formRow($form->get('telefone_celular_1'));
-echo $this->formRow($form->get('telefone_celular_2'));
-echo $this->formRow($form->get('email'));
-echo $this->formRow($form->get('salario'));
-echo $this->formRow($form->get('sindicato'));
-echo $this->formRow($form->get('funcao'));
-echo $this->formRow($form->get('perfil'));
-echo $this->formRow($form->get('user_name'));
-echo $this->formRow($form->get('senha'));
-echo $this->formRow($form->get('data_admissao'));
-echo $this->formRow($form->get('empresa_id'));
-echo $this->formRow($form->get('cep'));
-echo $this->formRow($form->get('cidade'));
-echo $this->formRow($form->get('uf'));
-echo $this->formRow($form->get('logradouro'));
-echo $this->formRow($form->get('numero'));
-echo $this->formRow($form->get('bairro'));
-echo $this->formRow($form->get('complemento'));
-echo $this->formSubmit($form->get('submit'));
+?>
+<br>
+<div class="col-md-12">
+    <h5>Dados Pessoais</h5>
+</div>
+<hr>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formHidden($form->get('id'));
+            echo $this->formRow($form->get('nome')); ?>
+</div>
+<div class="col-md-12 div-def ">
+    <?php   echo $this->formRow($form->get('sexo')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('data_nascimento')); ?>
+</div>
+<div class="col-md-12 div-def ">
+    <?php   echo $this->formRow($form->get('cpf')); ?>
+</div>
+<div class="col-md-12 div-def ">
+    <?php   echo $this->formRow($form->get('rg')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('pis_nis')); ?>
+</div>
+<br>
+<div class="col-md-12">
+    <h5>Endereço</h5>
+</div>
+<hr>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('cep')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('cidade')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('uf')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('logradouro')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('numero')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('bairro')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('complemento')); ?>
+</div>
+<br>
+<div class="col-md-12">
+    <h5>Contato</h5>
+</div>
+<hr>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('telefone_fixo')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('telefone_celular_1')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('telefone_celular_2')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('email')); ?>
+</div>
+<br>
+<div class="col-md-12">
+    <h5>Dados de Usuário</h5>
+</div>
+<hr>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('data_cadastro')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('perfil')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('user_name')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('senha')); ?>
+</div>
+<br>
+<div class="col-md-12">
+    <h5>Contrato</h5>
+</div>
+<hr>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('data_admissao')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('salario')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('funcao')); ?>
+</div>
+<br>
+
+<div class="col-md-12">
+    <div class="">
+        <a href="<?php echo $this->url('funcionarios',
+                    array('action'=>'index'));?>" class="btn btn-danger btn-lg active col-md-2 " role="button" aria-pressed="true">Cancelar</a>
+        <?php   echo $this->formSubmit($form->get('submit')); ?>
+    </div>
+</div>
+<?php
 echo $this->form()->closeTag();
+?>

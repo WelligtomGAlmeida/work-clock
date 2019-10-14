@@ -18,7 +18,7 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Ponto\Controller\Ponto',
-                        'action'     => 'index',
+                        'action'     => 'direcionaPonto',
                     ),
                 ),
             ),

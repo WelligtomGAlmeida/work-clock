@@ -1,5 +1,5 @@
 .navbar-principal {
-    background: #6f7c91;
+    background: #9db5db;
     padding: 0 !important;
 }
 
@@ -28,4 +28,9 @@ ul.navbar-nav {
 
 .div-login{
     background:#dbdbce;
+}
+
+.white-text{
+    color: #ffffff;
+    text-color:#ffffff;
 }

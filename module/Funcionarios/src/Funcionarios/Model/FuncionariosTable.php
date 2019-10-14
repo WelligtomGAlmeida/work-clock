@@ -2,6 +2,7 @@
 namespace Funcionarios\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Zend\Db\Adapter\Adapter;
 
 class FuncionariosTable
 {
@@ -43,13 +44,12 @@ class FuncionariosTable
             'telefone_celular_2' => $funcionarios->telefone_celular_2,
             'email' => $funcionarios->email,
             'salario' => $funcionarios->salario,
-            'sindicato' => $funcionarios->sindicato,
             'funcao' => $funcionarios->funcao,
             'perfil' => $funcionarios->perfil ,
             'user_name' => $funcionarios->user_name,
             'senha' => $funcionarios->senha,
             'data_admissao' => $funcionarios->data_admissao,
-            'empresa_id' => $funcionarios->empresa_id,
+            'data_cadastro' => $funcionarios->data_cadastro,
             'cep' => $funcionarios->cep,
             'cidade' => $funcionarios->cidade,
             'uf' => $funcionarios->uf,
@@ -74,5 +74,14 @@ class FuncionariosTable
     public function deleteFuncionarios($id)
     {
         $this->tableGateway->delete(array('id' => $id));
+    }
+
+    public static function buscarDados($adapter,$id)
+    {
+        $sql = "select id,nome,DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento,pis_nis,cpf,funcao,DATE_FORMAT(data_cadastro, '%d/%m/%Y') as data_cadastro from funcionarios where id = " . $id;
+
+        $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $result->current();
     }
 }
