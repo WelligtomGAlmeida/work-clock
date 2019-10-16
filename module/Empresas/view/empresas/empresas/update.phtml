@@ -19,23 +19,48 @@ $form->prepare();
 
 echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('razao_social'));
-echo $this->formRow($form->get('cnpj'));
-echo $this->formRow($form->get('telefone_fixo'));
-echo $this->formRow($form->get('telefone_celular_1'));
-echo $this->formRow($form->get('telefone_celular_2'));
-echo $this->formRow($form->get('email'));
-echo $this->formRow($form->get('data_cadastro'));
+echo $this->formHidden($form->get('data_cadastro'));
 ?>
+<br>
+<div class="col-md-12">
+    <h5>Dados da Empresa</h5>
+</div>
+<hr>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('razao_social')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('cnpj')); ?>
+</div>
+
+<br>
+<div class="col-md-12">
+    <h5>Contato</h5>
+</div>
+<hr>
+
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('telefone_fixo')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('telefone_celular_1')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('telefone_celular_2')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('email')); ?>
+</div>
+
 <br>
 <div class="col-md-12">
     <h5>Endereço</h5>
 </div>
 <hr>
-<div class="col-md-6 div-def">
+<div class="col-md-12 div-def">
     <?php   echo $this->formRow($form->get('cep')); ?>
 </div>
-<div class="col-md-6 div-def float-right">
+<div class="col-md-12 div-def">
     <?php   echo $this->formRow($form->get('cidade')); ?>
 </div>
 <div class="col-md-12 div-def">

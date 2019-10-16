@@ -18,7 +18,7 @@ class EmpresasForm extends Form
             'name' => 'razao_social',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Razão Social',
+                'label' => 'Razão Social *',
             ),
             'attributes' => array(
                 'class' => 'form-control',
@@ -28,7 +28,7 @@ class EmpresasForm extends Form
             'name' => 'cnpj',
             'type' => 'Text',
             'options' => array(
-                'label' => 'CNPJ',
+                'label' => 'CNPJ *',
             ),
             'attributes' => array(
                 'class' => 'form-control',
@@ -48,7 +48,7 @@ class EmpresasForm extends Form
             'name' => 'telefone_celular_1',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Celular 1',
+                'label' => 'Celular 1 *',
             ),
             'attributes' => array(
                 'class' => 'form-control',
@@ -76,7 +76,7 @@ class EmpresasForm extends Form
         ));
         $this->add(array(
             'name' => 'data_cadastro',
-            'type' => 'Date',
+            'type' => 'Hidden',
             'options' => array(
                 'label' => 'Data de Cadastro',
             ),
@@ -88,7 +88,7 @@ class EmpresasForm extends Form
             'name' => 'cep',
             'type' => 'Text',
             'options' => array(
-                'label' => 'CEP',
+                'label' => 'CEP  *',
             ),
             'attributes' => array(
                 'class' => 'form-control',
@@ -98,7 +98,7 @@ class EmpresasForm extends Form
             'name' => 'cidade',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Cidade',
+                'label' => 'Cidade  *',
             ),
             'attributes' => array(
                 'class' => 'form-control',
@@ -106,9 +106,38 @@ class EmpresasForm extends Form
         ));
         $this->add(array(
             'name' => 'uf',
-            'type' => 'Text',
+            'type' => 'Select',
             'options' => array(
-                'label' => 'UF',
+                'label' => 'Estado *',
+                'options' => array( '' => 'Selecione o estado',
+                                    'AC' => 'Acre',
+                                    'AL' => 'Alagoas',
+                                    'AP' => 'Amapá',
+                                    'AM' => 'Amazonas',
+                                    'BA' => 'Bahia',
+                                    'CE' => 'Ceará',
+                                    'DF' => 'Distrito Federal',
+                                    'ES' => 'Espírito Santo',
+                                    'GO' => 'Goiás',
+                                    'MA' => 'Maranhão',
+                                    'MT' => 'Mato Grosso',
+                                    'MS' => 'Mato Grosso do Sul',
+                                    'MG' => 'Minas Gerais',
+                                    'PA' => 'Pará',
+                                    'PB' => 'Paraíba',
+                                    'PR' => 'Paraná',
+                                    'PE' => 'Pernambuco',
+                                    'PI' => 'Piauí',
+                                    'RJ' => 'Rio de Janeiro',
+                                    'RN' => 'Rio Grande do Norte',
+                                    'RS' => 'Rio Grande do Sul',
+                                    'RO' => 'Rondônia',
+                                    'RR' => 'Roraima',
+                                    'SC' => 'Santa Catarina',
+                                    'SP' => 'São Paulo',
+                                    'SE' => 'Sergipe',
+                                    'TO' => 'Tocantins'
+                )
             ),
             'attributes' => array(
                 'class' => 'form-control',
@@ -118,7 +147,7 @@ class EmpresasForm extends Form
             'name' => 'logradouro',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Logradouro',
+                'label' => 'Logradouro *',
             ),
             'attributes' => array(
                 'class' => 'form-control',
@@ -128,7 +157,7 @@ class EmpresasForm extends Form
             'name' => 'numero',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Número',
+                'label' => 'Número *',
             ),
             'attributes' => array(
                 'class' => 'form-control',
@@ -138,7 +167,7 @@ class EmpresasForm extends Form
             'name' => 'bairro',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Bairro',
+                'label' => 'Bairro *',
             ),
             'attributes' => array(
                 'class' => 'form-control',

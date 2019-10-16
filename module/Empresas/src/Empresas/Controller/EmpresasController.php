@@ -71,7 +71,7 @@ class EmpresasController extends AbstractActionController
 
         $form  = new EmpresasForm();
         $form->bind($empresas);
-        $form->get('submit')->setAttribute('value', 'Update');
+        $form->get('submit')->setAttribute('value', 'Salvar');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
