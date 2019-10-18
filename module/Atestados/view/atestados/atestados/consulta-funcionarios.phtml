@@ -1,0 +1,51 @@
+<?php
+$title = 'Abonar Falta';
+
+$this->headTitle($title);
+
+$funcionarios = $this->funcionarios;
+?>
+
+<h1>
+<?php echo $title; ?>
+</h1>
+<div class="col-md-12">
+    <h5>Consultar Funcionário</h5>
+</div>
+<hr>
+<form method="post" name="atestados" action="/atestados/consultaFuncionarios" id="atestados">
+<div class="row form-inline form-group">
+
+    <div  class="col-md-2 ">
+        <input type="text" id="id" name="id" class="form-control" placeholder="ID" style="margin-right:5px;width:100%;">
+    </div>
+    <div  class="col-md-6 ">
+        <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" style="width:100%">
+    </div>
+    <div class="col-md-4 ">
+        <input type="submit" class="btn btn-md btn-primary "  value="Pesquisar">
+    </div>
+</div>
+</form>
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Função</th>
+        <th>Data Nasc.</th>
+        <th></th>
+    </tr>
+    <?php foreach ($funcionarios as $funcionario) : ?>
+    <tr>
+        <td><?php echo $funcionario->id;?></td>
+        <td><?php echo $funcionario->nome;?></td>
+        <td><?php echo $funcionario->funcao;?></td>
+        <td><?php echo $funcionario->data_nascimento;?></td>
+        <td>
+            <a href="<?php echo $this->url('atestados',
+                array('action'=>'create', 'id' => $funcionario->id));?>">Registrar Abono</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    </table>
+

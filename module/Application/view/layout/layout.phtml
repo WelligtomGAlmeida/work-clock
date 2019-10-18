@@ -59,7 +59,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="<?php echo $this->url('empresas',
                                     array('action'=>'update', 'id' => $_SESSION['empresa']));?>">Cadastro</a>
-                            <a class="dropdown-item" href="#">Configurações</a>
+                            <a class="dropdown-item" href="<?php echo $this->url('variaveisEmpresa', array('action'=>'update', 'id' => $_SESSION['variaveisEmpresa'])); ?>">Configurações</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -68,7 +68,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="<?php echo $this->url('funcionarios') ?>">Cadastro de Funcionário</a>
-                            <a class="dropdown-item" href="#">Abonar Falta</a>
+                            <a class="dropdown-item" href="<?php echo $this->url('atestados'); ?>">Abonar Falta</a>
                             <a class="dropdown-item" href="#">Afastar Funcionário</a>
                             </div>
                         </li>

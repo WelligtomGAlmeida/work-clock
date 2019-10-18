@@ -21,94 +21,123 @@ class VariaveisEmpresaForm extends Form
         ));
         $this->add(array(
             'name' => 'ent_1',
-            'type' => 'Time',
+            'type' => 'Text',
             'options' => array(
-                'label' => 'Entrada 1',
+                'label' => 'Entrada *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'sai_1',
-            'type' => 'Time',
+            'type' => 'Text',
             'options' => array(
-                'label' => 'Saída 1',
+                'label' => 'Intervalo *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'ent_2',
-            'type' => 'Time',
+            'type' => 'Text',
             'options' => array(
-                'label' => 'Entrada 2',
+                'label' => 'Retorno *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'sai_2',
-            'type' => 'Time',
+            'type' => 'Text',
             'options' => array(
-                'label' => 'Saída 2',
+                'label' => 'Saída *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'salario_padrao',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Salário Padrão',
+                'label' => 'Salário Padrão *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'valor_hora_extra',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Valor da Hora Extra',
+                'label' => 'Valor da Hora Extra *',
             ),
-        ));
-        $this->add(array(
-            'name' => 'trabalho_sabado',
-            'type' => 'Radio',
-            'options' => array(
-                'label' => 'Trabalha no Sábado?',
-                'options' => array(1 => 'Sim', 0 => 'Não')
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'horas_semanais',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Horas Semanais',
+                'label' => 'Horas Semanais *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'ent_sab_1',
-            'type' => 'Time',
+            'type' => 'Text',
             'options' => array(
-                'label' => 'Sábado Entrada 1',
+                'label' => 'Entrada',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'sai_sab_1',
-            'type' => 'Time',
+            'type' => 'Text',
             'options' => array(
-                'label' => 'Sábado Saída 1',
+                'label' => 'Intervalo',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'ent_sab_2',
-            'type' => 'Time',
+            'type' => 'Text',
             'options' => array(
-                'label' => 'Sábado Entrada 2',
+                'label' => 'Retorno',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'sai_sab_2',
-            'type' => 'Time',
+            'type' => 'Text',
             'options' => array(
-                'label' => 'Sábado Saída 2',
+                'label' => 'Saída',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
+        
         $this->add(array(
             'name' => 'valor_sindicato',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Valor do Sindicato',
+                'label' => 'Valor do Sindicato *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
@@ -117,6 +146,8 @@ class VariaveisEmpresaForm extends Form
             'attributes' => array(
                 'value' => 'Go',
                 'id' => 'submitbutton',
+                'class' => 'btn btn-success btn-lg active col-md-2',
+                
             ),
         ));
     }

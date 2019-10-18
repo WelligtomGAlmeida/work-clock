@@ -49,6 +49,7 @@ class Sessao {
 
                 $_SESSION['funcionario'] = $resultado;
                 $_SESSION['empresa'] = 4;
+                $_SESSION['variaveisEmpresa'] = 1;
 
                 return array(   "cod" => "1",
                                 "msg" => "Login realizado com sucesso!");

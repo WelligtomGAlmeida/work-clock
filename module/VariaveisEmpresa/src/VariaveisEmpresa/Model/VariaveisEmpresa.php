@@ -16,7 +16,6 @@ class VariaveisEmpresa
     public $sai_2;
     public $salario_padrao;
     public $valor_hora_extra;
-    public $trabalho_sabado;
     public $horas_semanais;
     public $ent_sab_1;
     public $sai_sab_1;
@@ -35,7 +34,6 @@ class VariaveisEmpresa
         $this->sai_2 = (!empty($data['sai_2'])) ? $data['sai_2'] : null;
         $this->salario_padrao = (!empty($data['salario_padrao'])) ? $data['salario_padrao'] : null;
         $this->valor_hora_extra = (!empty($data['valor_hora_extra'])) ? $data['valor_hora_extra'] : null;
-        $this->trabalho_sabado = (!empty($data['trabalho_sabado'])) ? $data['trabalho_sabado'] : null;
         $this->horas_semanais = (!empty($data['horas_semanais'])) ? $data['horas_semanais'] : null;
         $this->ent_sab_1 = (!empty($data['ent_sab_1'])) ? $data['ent_sab_1'] : null;
         $this->sai_sab_1 = (!empty($data['sai_sab_1'])) ? $data['sai_sab_1'] : null;
@@ -112,13 +110,6 @@ class VariaveisEmpresa
 
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'valor_hora_extra',
-                'required' => true,
-                'filters'  => array(
-                    array('name' => 'Int'),
-                ),
-            )));
-            $inputFilter->add($factory->createInput(array(
-                'name'     => 'trabalho_sabado',
                 'required' => true,
                 'filters'  => array(
                     array('name' => 'Int'),

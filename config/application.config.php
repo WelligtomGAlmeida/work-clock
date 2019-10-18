@@ -8,7 +8,7 @@ return array(
         'VariaveisEmpresa',
         'AfastarFuncionario',
         'Ponto',
-        //'Atestado',
+        'Atestados',
         'Login',
     ),
 

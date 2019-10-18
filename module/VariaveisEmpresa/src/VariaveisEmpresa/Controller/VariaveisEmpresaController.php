@@ -48,12 +48,14 @@ class VariaveisEmpresaController extends AbstractActionController
 
         $form  = new VariaveisEmpresaForm();
         $form->bind($variaveisEmpresa);
-        $form->get('submit')->setAttribute('value', 'Update');
+        $form->get('submit')->setAttribute('value', 'Salvar');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setInputFilter($variaveisEmpresa->getInputFilter());
             $form->setData($request->getPost());
+
+            $f = $form;
 
             if ($form->isValid()) {
                 $this->getVariaveisEmpresaTable()->saveVariaveisEmpresa($variaveisEmpresa);

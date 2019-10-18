@@ -1,10 +1,10 @@
 <?php
-namespace Empresas;
+namespace Atestados;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Empresas\Model\Empresas;
-use Empresas\Model\EmpresasTable;
+use Atestados\Model\Atestados;
+use Atestados\Model\AtestadosTable;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -33,16 +33,16 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
     {
         return array(
             'factories' => array(
-                'Empresas\Model\EmpresasTable' =>  function($sm) {
-                    $tableGateway = $sm->get('EmpresasTableGateway');
-                    $table = new EmpresasTable($tableGateway);
+                'Atestados\Model\AtestadosTable' =>  function($sm) {
+                    $tableGateway = $sm->get('AtestadosTableGateway');
+                    $table = new AtestadosTable($tableGateway);
                     return $table;
                 },
-                'EmpresasTableGateway' => function ($sm) {
+                'AtestadosTableGateway' => function ($sm) {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
-                    $resultSetPrototype->setArrayObjectPrototype(new Empresas());
-                    return new TableGateway('empresas', $dbAdapter, null, $resultSetPrototype);
+                    $resultSetPrototype->setArrayObjectPrototype(new Atestados());
+                    return new TableGateway('atestados', $dbAdapter, null, $resultSetPrototype);
                 },
             ),
         );

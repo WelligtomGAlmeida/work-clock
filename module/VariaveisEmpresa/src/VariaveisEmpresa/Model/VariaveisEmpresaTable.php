@@ -39,7 +39,6 @@ class VariaveisEmpresaTable
             'sai_2' => $variaveisEmpresa->sai_2,
             'salario_padrao' => $variaveisEmpresa->salario_padrao,
             'valor_hora_extra' => $variaveisEmpresa->valor_hora_extra,
-            'trabalho_sabado' => $variaveisEmpresa->trabalho_sabado,
             'horas_semanais' => $variaveisEmpresa->horas_semanais,
             'ent_sab_1' => $variaveisEmpresa->ent_sab_1,
             'sai_sab_1' => $variaveisEmpresa->sai_sab_1,

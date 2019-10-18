@@ -1,7 +1,7 @@
 <?php
 // module/Album/view/album/album/edit.phtml:
 
-$title = 'Configuração de Empresa';
+$title = 'Configuração da Empresa';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
@@ -19,19 +19,72 @@ $form->prepare();
 
 echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('empresa_id'));
-echo $this->formRow($form->get('ent_1'));
-echo $this->formRow($form->get('sai_1'));
-echo $this->formRow($form->get('ent_2'));
-echo $this->formRow($form->get('sai_2'));
-echo $this->formRow($form->get('salario_padrao'));
-echo $this->formRow($form->get('valor_hora_extra'));
-echo $this->formRow($form->get('trabalho_sabado'));
-echo $this->formRow($form->get('horas_semanais'));
-echo $this->formRow($form->get('ent_sab_1'));
-echo $this->formRow($form->get('sai_sab_1'));
-echo $this->formRow($form->get('ent_sab_2'));
-echo $this->formRow($form->get('sai_sab_2'));
-echo $this->formRow($form->get('valor_sindicato'));
-echo $this->formSubmit($form->get('submit'));
+echo $this->formHidden($form->get('empresa_id'));
+?>
+<br>
+<div class="col-md-12">
+    <h5>Horário de Trabalho</h5>
+</div>
+<hr>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('ent_1')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('sai_1')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('ent_2')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('sai_2')); ?>
+</div>
+
+<br>
+<div class="col-md-12">
+    <h5>Horário de Trabalho aos Sábados</h5>
+</div>
+<hr>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('ent_sab_1')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('sai_sab_1')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('ent_sab_2')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('sai_sab_2')); ?>
+</div>
+<br>
+<div class="col-md-12">
+    <h5>Carga Horária</h5>
+</div>
+<hr>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('horas_semanais')); ?>
+</div>
+<br>
+<div class="col-md-12">
+    <h5>Salário</h5>
+</div>
+<hr>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('salario_padrao')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('valor_hora_extra')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php   echo $this->formRow($form->get('valor_sindicato')); ?>
+</div>
+<br>
+<div class="col-md-12 div-def">
+    <a href="<?php echo $this->url('variaveisEmpresa',
+                    array('action'=>'index'));?>" class="btn btn-danger btn-lg active col-md-2 " role="button" aria-pressed="true">Cancelar</a>
+    <?php   echo $this->formSubmit($form->get('submit')); ?>
+</div>
+
+<?php
 echo $this->form()->closeTag();
+?>
