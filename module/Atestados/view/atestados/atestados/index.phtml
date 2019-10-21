@@ -5,16 +5,18 @@ $title = 'Atestados';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
-<p>
-    <a href="<?php echo $this->url('atestados', array('action'=>'consultaFuncionarios'));?>">+ Adicionar novo atestado</a>
+
+<p style="float:right;" >
+    <a href="<?php echo $this->url('atestados', array('action'=>'consultaFuncionarios'));?>" class="btn btn-success btn-md active" role="button" aria-pressed="true">+ Adicionar novo Atestado</a>
 </p>
 
-<table class="table">
+<table class="table table-striped">
 <tr>
     <th>Código</th>
     <th>Funcionário</th>
     <th>data</th>
     <th>Horas Abonadas</th>
+    <th></th>
 </tr>
 <?php foreach ($atestados as $atestado) : ?>
 <tr>
@@ -23,10 +25,12 @@ $this->headTitle($title);
     <td><?php echo $this->escapeHtml($atestado->data);?></td>
     <td><?php echo $this->escapeHtml($atestado->horas_abonadas);?></td>
     <td>
-        <a href="<?php echo $this->url('atestados',
-            array('action'=>'update', 'id' => $atestado->id));?>">Alterar</a>
-        <a href="<?php echo $this->url('atestados',
-            array('action'=>'delete', 'id' => $atestado->id));?>">Excluir</a>
+        <div class="float-right">
+            <a href="<?php echo $this->url('atestados',
+                array('action'=>'update', 'id' => $atestado->id));?>" class="btn btn-primary btn-sm active" style="background:#0a315a;border-color:#0a315a;" role="button" aria-pressed="true">Alterar</a>
+            <a href="<?php echo $this->url('atestados',
+                array('action'=>'delete', 'id' => $atestado->id));?>" class="btn btn-primary btn-sm active" style="background:#282829;border-color:#282829;" role="button" aria-pressed="true">Excluir</a>
+        </div>            
     </td>
 </tr>
 <?php endforeach; ?>

@@ -82,4 +82,13 @@ class AtestadosTable
 
         return $result->current();
     }
+
+    public static function buscarDados($adapter,$id)
+    {
+        $sql = "select fa.id,f.nome,data,horas_abonadas,motivo from atestados fa inner join funcionarios f on fa.funcionario_id = f.id where fa.id = " . $id;
+
+        $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $result->current();
+    }
 }

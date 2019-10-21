@@ -41,7 +41,16 @@ class LoginController extends AbstractActionController
 
                 if($result["cod"] == "1")
                 {
-                    return $this->redirect()->toRoute('ponto', array('action' => 'direcionaPonto', 'id' => $_SESSION['funcionario']->id));
+                    if($_SESSION['funcionario']->perfil != 1)
+                    {
+                        return $this->redirect()->toRoute('ponto', array('action' => 'direcionaPonto', 'id' => $_SESSION['funcionario']->id));
+                    }
+                    else
+                    {
+                        return $this->redirect()->toRoute('empresas', array('action' => 'index'));
+                    }
+                    
+                    
                 }
                 else
                     return array(   'form' => $form,

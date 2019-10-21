@@ -11,7 +11,7 @@ $this->headTitle($title);
 
 <table class="table table-striped">
 <tr>
-    <th>Id</th>
+    <th>Código</th>
     <th>Nome</th>
     <th>CPF</th>
     <th>PIS/NIS</th>
@@ -26,7 +26,11 @@ $this->headTitle($title);
     <td>
         <div class="float-right">
             <a href="<?php echo $this->url('funcionarios',
-                array('action'=>'update', 'id' => $funcionario->id));?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Alterar</a>
+                array('action'=>'update', 'id' => $funcionario->id));?>" class="btn btn-primary btn-sm active" style="background:#0a315a;border-color:#0a315a;" role="button" aria-pressed="true">Alterar</a>
+            <a href="<?php echo $this->url('atestados',
+                array('action'=>'create', 'id' => $funcionario->id));?>" class="btn btn-primary btn-sm active" style="background:#2b5e94;border-color:#2b5e94;" role="button" aria-pressed="true">Atestar Falta</a>
+            <a href="<?php echo $this->url('afastarFuncionario',
+                array('action'=>'create', 'id' => $funcionario->id));?>" class="btn btn-primary btn-sm active" style="background:#587db7;border-color:#587db7;" role="button" aria-pressed="true">Afastar</a>
         </div>
     </td>
 </tr>

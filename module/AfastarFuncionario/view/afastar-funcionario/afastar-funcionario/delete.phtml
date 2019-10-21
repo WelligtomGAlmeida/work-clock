@@ -1,17 +1,21 @@
 <?php
 
-$title = 'Excluir Funcionário';
+$title = 'Afastar Funcionário';
 $this->headTitle($title);
 
 $afastamento = $this->afastamento;
 ?>
 
 <h1><?php echo $this->escapeHtml($title); ?></h1>
-<br>
-<h5>
-    Tem certeza que deseja excluir este afastamento?
-</h5>
-<hr>
+<label style="font-size:25px;color:#2c3b94;">Delete</label>
+<br><br>
+
+<div class="col-md-12">
+    <h5>
+        Tem certeza que deseja excluir este afastamento?
+    </h5>
+    <hr>
+</div>
 
 <div class="col-md-12">
     <dt class="col-md-2 float-left" >

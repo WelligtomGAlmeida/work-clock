@@ -49,9 +49,37 @@
         ?>
         <nav class="navbar navbar-expand-md navbar-principal navbar-light">
             <div class="container">
+                <?php 
+                    if($_SESSION['funcionario']->perfil != 1)
+                    {
+                ?>
                 <a class="navbar-brand font-weight-bold white-text" style="text-color:#ffffff;color:#ffffff;" href="<?php echo $this->url('ponto') ?>"><img src="<?php echo $this->basePath('img/logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Skeleton Application') ?></a>
+                <?php 
+                    }
+                    else
+                    {
+                ?> 
+                <a class="navbar-brand font-weight-bold white-text" style="text-color:#ffffff;color:#ffffff;" href="<?php echo $this->url('empresas') ?>"><img src="<?php echo $this->basePath('img/logo.png') ?>" alt="Zend Framework 2"/>&nbsp;<?php echo $this->translate('Skeleton Application') ?></a>
+                <?php 
+                    }
+                ?>    
                 <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                     <ul class="navbar-nav mr-auto" >
+                        <?php 
+                            if($_SESSION['funcionario']->perfil != 1)
+                            {
+                        ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href=" <?php echo $this->url('ponto',array('action'=>'create')); ?>
+                                "><b style="text-color:#ffffff;color:#ffffff;">Registrar Ponto</b></a>
+                        </li>
+                        <?php 
+                            }
+                        ?>     
+                        <?php 
+                            if($_SESSION['funcionario']->perfil == 1)
+                            {
+                        ?>                   
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <b style="text-color:#ffffff;color:#ffffff;">Empresa</b>
@@ -62,19 +90,36 @@
                             <a class="dropdown-item" href="<?php echo $this->url('variaveisEmpresa', array('action'=>'update', 'id' => $_SESSION['variaveisEmpresa'])); ?>">Configurações</a>
                             </div>
                         </li>
+                        <?php 
+                            }
+                        ?> 
+                        <?php 
+                            if($_SESSION['funcionario']->perfil != 3)
+                            {
+                        ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <b style="text-color:#ffffff;color:#ffffff;">Funcionários</b>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="<?php echo $this->url('funcionarios') ?>">Cadastros</a>
-                            <a class="dropdown-item" href="<?php echo $this->url('atestados'); ?>">Atestado</a>
+                            <a class="dropdown-item" href="<?php echo $this->url('atestados'); ?>">Atestados</a>
                             <a class="dropdown-item" href="<?php echo $this->url('afastarFuncionario'); ?>">Afastar Funcionário</a>
                             </div>
                         </li>
+                        <?php 
+                            }
+                        ?> 
+                        <?php 
+                            if($_SESSION['funcionario']->perfil == 1)
+                            {
+                        ?>   
                         <li class="nav-item">
                             <a class="nav-link" href="#"><b style="text-color:#ffffff;color:#ffffff;">Relatórios</b></a>
                         </li>
+                        <?php 
+                            }
+                        ?>   
                         <li class="nav-item">
                             <a class="nav-link" href="#"><b style="text-color:#ffffff;color:#ffffff;">Meu Perfil</b></a>
                         </li>

@@ -7,10 +7,11 @@
 
 <?php
 
-$title = 'Cadastrar Funcionário';
+$title = 'Funcionário';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
+<label style="font-size:25px;color:#2c3b94;">Cadastrar</label>
 <?php
 $form = $this->form;
 $form->setAttribute('action', $this->url('funcionarios', array('action' => 'create')));

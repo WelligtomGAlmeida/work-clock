@@ -116,32 +116,6 @@ class AtestadosController extends AbstractActionController
 
     }
 
-    public function deleteAction()
-    {
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if (!$id) {
-            return $this->redirect()->toRoute('atestados');
-        }
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $del = $request->getPost('delete', 'No');
-
-            if ($del == 'Yes') {
-                $id = (int) $request->getPost('id');
-                $this->getAtestadosTable()->deleteAtestados($id);
-            }
-
-            // Redireciona para a lista de albuns
-            return $this->redirect()->toRoute('atestados');
-        }
-
-        return array(
-            'id'    => $id,
-            'atestados' => $this->getAtestadosTable()->getAtestados($id)
-        );
-    }
-
     public function consultaFuncionariosAction()
     {
         $request = $this->getRequest();
@@ -159,6 +133,34 @@ class AtestadosController extends AbstractActionController
 
         return array(
             'funcionarios' => $funcionarios
+        );
+    }
+
+    public function deleteAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('atestados');
+        }
+
+        $atestado = AtestadosTable::buscarDados($this->getAdapter(),$id);
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $del = $request->getPost('delete', 'Cancelar');
+
+            if ($del == 'Excluir') {
+                $id = (int) $request->getPost('id');
+                $this->getAtestadosTable()->deleteAtestados($id);
+            }
+
+            // Redireciona para a lista de albuns
+            return $this->redirect()->toRoute('atestados');
+        }
+
+        return array(
+            'id'    => $id,
+            'atestado'   => $atestado,
         );
     }
 }

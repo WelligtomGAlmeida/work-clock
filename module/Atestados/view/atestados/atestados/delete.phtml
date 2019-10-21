@@ -1,23 +1,88 @@
 <?php
 
-$title = 'Excluir Empresa';
+$title = 'Atestado';
 $this->headTitle($title);
-?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
 
-<p>Tem certeza que deseja excluir esta empresa
-    '<?php echo $this->escapeHtml($empresas->razao_social); ?>'
-</p>
+$atestado = $this->atestado;
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<label style="font-size:25px;color:#2c3b94;">Delete</label>
+<br><br>
+
+<div class="col-md-12">
+    <h5>
+        Tem certeza que deseja excluir este atestado?
+    </h5>
+    <hr>
+</div>
+
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Código
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $atestado->id; ?>
+    </dd>
+</div>
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Funcionário
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $atestado->nome; ?>
+    </dd>
+</div>
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Data
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $atestado->data; ?>
+    </dd>
+</div>
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Horas Abonadas
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $atestado->horas_abonadas; ?>
+    </dd>
+</div>
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Motivo
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $atestado->motivo; ?>
+    </dd>
+</div>
+
 <?php
-$url = $this->url('empresas', array(
+$url = $this->url('atestados', array(
     'action' => 'delete',
     'id'     => $this->id,
 ));
 ?>
 <form action="<?php echo $url; ?>" method="post">
-<div>
+<div class="col-md-12" style="margin-top:50px;">
     <input type="hidden" name="id" value="<?php echo (int) $this->id; ?>" />
-    <input type="submit" name="delete" value="Yes" />
-    <input type="submit" name="delete" value="No" />
+    <input type="submit" name="delete" value="Cancelar" class="btn btn-lg active col-md-2" />
+    <input type="submit" name="delete" value="Excluir" class="btn btn-danger btn-lg active col-md-2" /> 
 </div>
 </form>

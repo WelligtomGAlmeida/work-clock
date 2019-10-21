@@ -9,10 +9,8 @@ $funcionarios = $this->funcionarios;
 <h1>
 <?php echo $title; ?>
 </h1>
-<div class="col-md-12">
-    <h5>Consultar Funcionário</h5>
-</div>
-<hr>
+<label style="font-size:25px;color:#2c3b94;">Consultar Funcionário</label>
+<br><br>
 <form method="post" name="atestados" action="/afastarFuncionario/consultaFuncionarios" id="afastarFuncionario">
 <div class="row form-inline form-group">
 
@@ -23,13 +21,13 @@ $funcionarios = $this->funcionarios;
         <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" style="width:100%">
     </div>
     <div class="col-md-4 ">
-        <input type="submit" class="btn btn-md btn-primary "  value="Pesquisar">
+        <input type="submit" class="btn btn-md btn-primary " style="background:#0a315a;border-color:#0a315a;" value="Pesquisar">
     </div>
 </div>
 </form>
 <table class="table table-striped">
     <tr>
-        <th>ID</th>
+        <th>Código</th>
         <th>Nome</th>
         <th>Função</th>
         <th>Data Nasc.</th>
@@ -42,8 +40,10 @@ $funcionarios = $this->funcionarios;
         <td><?php echo $funcionario->funcao;?></td>
         <td><?php echo $funcionario->data_nascimento;?></td>
         <td>
-            <a href="<?php echo $this->url('afastarFuncionario',
-                array('action'=>'create', 'id' => $funcionario->id));?>">Afastar</a>
+            <div class="float-right">
+                <a href="<?php echo $this->url('afastarFuncionario',
+                    array('action'=>'create', 'id' => $funcionario->id));?>" class="btn btn-success btn-sm active"  role="button" aria-pressed="true">Afastar</a>
+            </div>
         </td>
     </tr>
     <?php endforeach; ?>
