@@ -1,5 +1,4 @@
 <?php
-// module/Album/view/album/album/edit.phtml:
 
 $title = 'Alterar Afastamento';
 $this->headTitle($title);
@@ -7,23 +6,61 @@ $this->headTitle($title);
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 
 <?php
+$funcionario = $this->funcionario;
+
 $form = $this->form;
-$form->setAttribute('action', $this->url(
-    'afastarFuncionario',
-    array(
-        'action' => 'update',
-        'id'     => $this->id,
-    )
-));
+$form->setAttribute('action', $this->url('afastarFuncionario', array('action' => 'update','id' => $this->id)));
 $form->prepare();
 
 echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('funcionario_id'));
-echo $this->formRow($form->get('data_ini'));
-echo $this->formRow($form->get('data_fim'));
-echo $this->formRow($form->get('tipo'));
-echo $this->formRow($form->get('observacao'));
-echo $this->formRow($form->get('motivo'));
-echo $this->formSubmit($form->get('submit'));
-echo $this->form()->closeTag();
+echo $this->formHidden($form->get('funcionario_id'));
+?>
+<br>
+<div class="col-md-12 div-def">
+<table class="col-md-12" style="background:#f3f3f0;">
+    <tr>
+        <th>Funcionário</th>
+        <th>CPF</th>
+    </tr>
+    <tr>
+        <td>
+            <?php echo $funcionario->nome; ?>
+        </td>
+        <td>
+            <?php echo $funcionario->cpf; ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Função</th>
+        <th>Data de Nascimento</th>
+    </tr>
+    <tr>
+        <td>
+            <?php echo $funcionario->funcao; ?>
+        </td>
+        <td>
+            <?php echo $funcionario->data_nascimento; ?>
+        </td>
+    </tr>
+</table>
+</div>
+<br>
+<div class="col-md-12 div-def">
+    <?php echo $this->formRow($form->get('data_ini')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php echo $this->formRow($form->get('data_fim')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php echo $this->formRow($form->get('tipo')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php echo $this->formRow($form->get('observacao')); ?>
+</div>
+<br>
+<div class="col-md-12 div-def">
+<a href="<?php echo $this->url('afastarFuncionario',
+                    array('action'=>'index'));?>" class="btn btn-danger btn-lg active col-md-2 " role="button" aria-pressed="true">Cancelar</a>
+    <?php echo $this->formSubmit($form->get('submit')); ?>
+</div>

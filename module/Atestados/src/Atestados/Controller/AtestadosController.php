@@ -91,7 +91,9 @@ class AtestadosController extends AbstractActionController
 
         $form  = new AtestadosForm();
         $form->bind($atestados);
-        $form->get('submit')->setAttribute('value', 'Update');
+        $form->get('submit')->setAttribute('value', 'Salvar');
+
+        $funcionario = AtestadosTable::consultarFuncionario($this->getAdapter(),$atestados->funcionario_id);
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -109,6 +111,7 @@ class AtestadosController extends AbstractActionController
         return array(
             'id' => $id,
             'form' => $form,
+            'funcionario' => $funcionario
         );
 
     }

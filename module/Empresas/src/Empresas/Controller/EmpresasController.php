@@ -21,32 +21,10 @@ class EmpresasController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
-            'empresas' => $this->getEmpresasTable()->fetchAll(),
-        ));
-    }
-
-    public function createAction()
-    {
-        $form = new EmpresasForm();
-        $form->get('submit')->setValue('Create');
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $empresas = new Empresas();
-            $form->setInputFilter($empresas->getInputFilter());
-            $form->setData($request->getPost());
-
-            if ($form->isValid()) {
-                $empresas->exchangeArray($form->getData());
-
-                $this->getEmpresasTable()->saveEmpresas($empresas);
-
-                // Redirect to list of empresass
-                return $this->redirect()->toRoute('empresas');
-            }
-        }
-        return array('form' => $form);
+        return $this->redirect()->toRoute('empresas', array(
+            'action'    => 'update',
+            'id'        => $_SESSION['empresa']
+        )); 
     }
 
     public function updateAction()
@@ -54,7 +32,7 @@ class EmpresasController extends AbstractActionController
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
             return $this->redirect()->toRoute('empresas', array(
-                'action' => 'create'
+                'action' => 'index'
             ));
         }
 
@@ -65,7 +43,7 @@ class EmpresasController extends AbstractActionController
         }
         catch (\Exception $ex) {
             return $this->redirect()->toRoute('empresas', array(
-                'action' => 'index'
+                'action' => 'update'
             ));
         }
 
@@ -91,31 +69,5 @@ class EmpresasController extends AbstractActionController
             'form' => $form,
         );
 
-    }
-
-    public function deleteAction()
-    {
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if (!$id) {
-            return $this->redirect()->toRoute('empresas');
-        }
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $del = $request->getPost('delete', 'No');
-
-            if ($del == 'Yes') {
-                $id = (int) $request->getPost('id');
-                $this->getEmpresasTable()->deleteEmpresas($id);
-            }
-
-            // Redireciona para a lista de albuns
-            return $this->redirect()->toRoute('empresas');
-        }
-
-        return array(
-            'id'    => $id,
-            'empresas' => $this->getEmpresasTable()->getEmpresas($id)
-        );
     }
 }

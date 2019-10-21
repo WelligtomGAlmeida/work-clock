@@ -18,44 +18,49 @@ class AfastarFuncionarioForm extends Form
         $this->add(array(
             'name' => 'funcionario_id',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Funcionario(temp)',
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'data_ini',
             'type' => 'Date',
             'options' => array(
-                'label' => 'Data de Início',
+                'label' => 'Data de Início *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'data_fim',
             'type' => 'Date',
             'options' => array(
-                'label' => 'Data de Fim',
+                'label' => 'Data de Fim *',
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'tipo',
             'type' => 'Select',
             'options' => array(
-                'label' => 'Tipo',
+                'label' => 'Tipo *',
                 'options' => array('1' => 'Tipo 1','2' => 'Tipo 1','3' => 'Tipo 3')
+            ),
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
             'name' => 'observacao',
             'type' => 'Text',
             'options' => array(
-                'label' => 'Observação',
+                'label' => 'Observação *',
             ),
-        ));
-        $this->add(array(
-            'name' => 'motivo',
-            'type' => 'Text',
-            'options' => array(
-                'label' => 'Motivo',
+            'attributes' => array(
+                'class' => 'form-control'
             ),
         ));
         $this->add(array(
@@ -64,6 +69,7 @@ class AfastarFuncionarioForm extends Form
             'attributes' => array(
                 'value' => 'Go',
                 'id' => 'submitbutton',
+                'class' => 'btn btn-success btn-lg col-md-2 '
             ),
         ));
     }

@@ -1,13 +1,85 @@
 <?php
 
-$title = 'Excluir Afastamento';
+$title = 'Excluir Funcionário';
 $this->headTitle($title);
-?>
-<h1><?php echo $this->escapeHtml($title); ?></h1>
 
-<p>Tem certeza que deseja excluir este afastamento
-    '<?php echo $this->escapeHtml($afastarFuncionario->id); ?>'
-</p>
+$afastamento = $this->afastamento;
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<br>
+<h5>
+    Tem certeza que deseja excluir este afastamento?
+</h5>
+<hr>
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Código
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $afastamento->id; ?>
+    </dd>
+</div>
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Funcionário
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $afastamento->nome; ?>
+    </dd>
+</div>
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Data Inicial
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $afastamento->data_ini; ?>
+    </dd>
+</div>
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Data Final
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $afastamento->data_fim; ?>
+    </dd>
+</div>
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Tipo
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $afastamento->tipo; ?>
+    </dd>
+</div>
+
+<div class="col-md-12">
+    <dt class="col-md-2 float-left" >
+        <label class="float-right">
+            Observação
+        </label>
+    </dt>
+    <dd class="col-md-10 float-left">
+        <?php echo $afastamento->observacao; ?>
+    </dd>
+</div>
+
+
 <?php
 $url = $this->url('afastarFuncionario', array(
     'action' => 'delete',
@@ -15,9 +87,9 @@ $url = $this->url('afastarFuncionario', array(
 ));
 ?>
 <form action="<?php echo $url; ?>" method="post">
-<div>
+<div class="col-md-12" style="margin-top:50px;">
     <input type="hidden" name="id" value="<?php echo (int) $this->id; ?>" />
-    <input type="submit" name="delete" value="Yes" />
-    <input type="submit" name="delete" value="No" />
+    <input type="submit" name="delete" value="Cancelar" class="btn btn-lg active col-md-2" />
+    <input type="submit" name="delete" value="Excluir" class="btn btn-danger btn-lg active col-md-2" /> 
 </div>
 </form>

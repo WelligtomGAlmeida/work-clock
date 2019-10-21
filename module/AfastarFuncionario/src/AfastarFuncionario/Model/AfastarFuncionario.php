@@ -14,7 +14,6 @@ class AfastarFuncionario
     public $data_fim;
     public $tipo;
     public $observacao;
-    public $motivo;
     protected $inputFilter;
 
     public function exchangeArray($data)
@@ -25,7 +24,6 @@ class AfastarFuncionario
         $this->data_fim = (!empty($data['data_fim'])) ? $data['data_fim'] : null;
         $this->tipo = (!empty($data['tipo'])) ? $data['tipo'] : null;
         $this->observacao = (!empty($data['observacao'])) ? $data['observacao'] : null;
-        $this->motivo = (!empty($data['motivo'])) ? $data['motivo'] : null;
     }
 
     public function setInputFilter(InputFilterInterface $inputFilter)
@@ -49,7 +47,7 @@ class AfastarFuncionario
 
             $inputFilter->add($factory->createInput(array(
                 'name'     => 'funcionario_id',
-                'required' => true,
+                'required' => false,
                 'filters'  => array(
                     array('name' => 'StripTags'),
                     array('name' => 'StringTrim'),
@@ -112,26 +110,7 @@ class AfastarFuncionario
                         ),
                     ),
                 ),
-            )));
-
-            $inputFilter->add($factory->createInput(array(
-                'name'     => 'motivo',
-                'required' => false,
-                'filters'  => array(
-                    array('name' => 'StripTags'),
-                    array('name' => 'StringTrim'),
-                ),
-                'validators' => array(
-                    array(
-                        'name'    => 'StringLength',
-                        'options' => array(
-                            'encoding' => 'UTF-8',
-                            'min'      => 3,
-                            'max'      => 100,
-                        ),
-                    ),
-                ),
-            )));                                     
+            )));                                    
 
             $this->inputFilter = $inputFilter;
         }

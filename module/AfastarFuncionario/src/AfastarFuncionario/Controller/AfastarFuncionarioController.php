@@ -5,6 +5,8 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use AfastarFuncionario\Model\AfastarFuncionario;
 use AfastarFuncionario\Form\AfastarFuncionarioForm;
+use AfastarFuncionario\Model\AfastarFuncionarioTable;
+use Zend\Db\Adapter\Adapter;
 
 class AfastarFuncionarioController extends AbstractActionController
 {
@@ -19,6 +21,13 @@ class AfastarFuncionarioController extends AbstractActionController
         return $this->afastarFuncionarioTable;
     }
 
+    public function getAdapter()
+    {
+        $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+
+        return $adapter;
+    }
+
     public function indexAction()
     {
         return new ViewModel(array(
@@ -28,8 +37,17 @@ class AfastarFuncionarioController extends AbstractActionController
 
     public function createAction()
     {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('afastarFuncionario', array(
+                'action' => 'index'
+            ));
+        }
+        
+        $funcionario = AfastarFuncionarioTable::consultarFuncionario($this->getAdapter(),$id);
+
         $form = new AfastarFuncionarioForm();
-        $form->get('submit')->setValue('Create');
+        $form->get('submit')->setValue('Salvar');
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -39,6 +57,7 @@ class AfastarFuncionarioController extends AbstractActionController
 
             if ($form->isValid()) {
                 $afastarFuncionario->exchangeArray($form->getData());
+                $afastarFuncionario->funcionario_id = $id;
 
                 $this->getAfastarFuncionarioTable()->saveAfastarFuncionario($afastarFuncionario);
 
@@ -46,7 +65,10 @@ class AfastarFuncionarioController extends AbstractActionController
                 return $this->redirect()->toRoute('afastarFuncionario');
             }
         }
-        return array('form' => $form);
+        return array(
+            'form' => $form,
+            'funcionario' => $funcionario
+        );
     }
 
     public function updateAction()
@@ -71,12 +93,16 @@ class AfastarFuncionarioController extends AbstractActionController
 
         $form  = new AfastarFuncionarioForm();
         $form->bind($afastarFuncionario);
-        $form->get('submit')->setAttribute('value', 'Update');
+        $form->get('submit')->setAttribute('value', 'Salvar');
+
+        $funcionario = AfastarFuncionarioTable::consultarFuncionario($this->getAdapter(),$afastarFuncionario->funcionario_id);
 
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setInputFilter($afastarFuncionario->getInputFilter());
             $form->setData($request->getPost());
+
+            $i = 1;
 
             if ($form->isValid()) {
                 $this->getAfastarFuncionarioTable()->saveAfastarFuncionario($afastarFuncionario);
@@ -86,9 +112,12 @@ class AfastarFuncionarioController extends AbstractActionController
             }
         }
 
+        $i = 1;
+
         return array(
             'id' => $id,
             'form' => $form,
+            'funcionario' => $funcionario
         );
 
     }
@@ -97,14 +126,16 @@ class AfastarFuncionarioController extends AbstractActionController
     {
         $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
-            return $this->redirect()->toRoute('afastarFuncionario');
+            return $this->redirect()->toRoute('funcionarios');
         }
+
+        $afastamento = AfastarFuncionarioTable::buscarDados($this->getAdapter(),$id);
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $del = $request->getPost('delete', 'No');
+            $del = $request->getPost('delete', 'Cancelar');
 
-            if ($del == 'Yes') {
+            if ($del == 'Excluir') {
                 $id = (int) $request->getPost('id');
                 $this->getAfastarFuncionarioTable()->deleteAfastarFuncionario($id);
             }
@@ -115,7 +146,28 @@ class AfastarFuncionarioController extends AbstractActionController
 
         return array(
             'id'    => $id,
-            'afastarFuncionario' => $this->getAfastarFuncionarioTable()->getAfastarFuncionario($id)
+            'afastamento'   => $afastamento,
+        );
+    }
+
+
+    public function consultaFuncionariosAction()
+    {
+        $request = $this->getRequest();
+        
+        if($request->isPost())
+        {
+            $id = (int) $request->getPost('id');
+            $nome = $request->getPost('nome');
+
+            $funcionarios = AfastarFuncionarioTable::consultarFuncionarios($this->getAdapter(),$id,$nome);
+        }
+        else{
+            $funcionarios = AfastarFuncionarioTable::consultarFuncionarios($this->getAdapter());
+        }
+
+        return array(
+            'funcionarios' => $funcionarios
         );
     }
 }

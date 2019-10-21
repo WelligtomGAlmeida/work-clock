@@ -59,9 +59,4 @@ class EmpresasTable
             }
         }
     }
-
-    public function deleteEmpresas($id)
-    {
-        $this->tableGateway->delete(array('id' => $id));
-    }
 }

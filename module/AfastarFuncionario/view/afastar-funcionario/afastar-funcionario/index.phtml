@@ -6,7 +6,7 @@ $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <p>
-    <a href="<?php echo $this->url('afastarFuncionario', array('action'=>'create'));?>">+ Adicionar novo afastamento</a>
+    <a href="<?php echo $this->url('afastarFuncionario', array('action'=>'consulta-funcionarios'));?>">+ Adicionar novo afastamento</a>
 </p>
 
 <table class="table">
@@ -15,6 +15,7 @@ $this->headTitle($title);
     <th>Funcionário</th>
     <th>Tipo</th>
     <th>Data de Início</th>
+    <th></th>
 </tr>
 <?php foreach ($afastarFuncionario as $afastamento) : ?>
 <tr>

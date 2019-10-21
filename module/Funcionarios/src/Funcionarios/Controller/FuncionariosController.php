@@ -99,32 +99,4 @@ class FuncionariosController extends AbstractActionController
         );
 
     }
-
-    public function deleteAction()
-    {
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if (!$id) {
-            return $this->redirect()->toRoute('funcionarios');
-        }
-
-        $funcionario = FuncionariosTable::buscarDados($this->getAdapter(),$id);
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $del = $request->getPost('delete', 'Cancelar');
-
-            if ($del == 'Excluir') {
-                $id = (int) $request->getPost('id');
-                $this->getFuncionariosTable()->deleteFuncionarios($id);
-            }
-
-            // Redireciona para a lista de albuns
-            return $this->redirect()->toRoute('funcionarios');
-        }
-
-        return array(
-            'id'    => $id,
-            'funcionario'   => $funcionario,
-        );
-    }
 }

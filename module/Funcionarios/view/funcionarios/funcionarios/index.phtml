@@ -27,8 +27,6 @@ $this->headTitle($title);
         <div class="float-right">
             <a href="<?php echo $this->url('funcionarios',
                 array('action'=>'update', 'id' => $funcionario->id));?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Alterar</a>
-            <a href="<?php echo $this->url('funcionarios',
-                array('action'=>'delete', 'id' => $funcionario->id));?>" class="btn btn-danger btn-sm" role="button" style="background:#000;border:1px solid black" aria-pressed="true">Excluir</a>
         </div>
     </td>
 </tr>

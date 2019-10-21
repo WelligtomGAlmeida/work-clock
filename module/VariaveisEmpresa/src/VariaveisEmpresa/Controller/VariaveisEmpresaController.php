@@ -21,9 +21,10 @@ class VariaveisEmpresaController extends AbstractActionController
 
     public function indexAction()
     {
-        return new ViewModel(array(
-            'variaveisEmpresa' => $this->getVariaveisEmpresaTable()->fetchAll(),
-        ));
+        return $this->redirect()->toRoute('variaveisEmpresa', array(
+            'action'    => 'update',
+            'id'        => $_SESSION['variaveisEmpresa']
+        )); 
     }
 
     public function updateAction()

@@ -1,37 +1,65 @@
 <?php
-// module/Album/view/album/album/edit.phtml:
 
-$title = 'Alterar Empresa';
+$title = 'Alterar Abono';
 $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
-
 <?php
+$funcionario = $this->funcionario;
+
 $form = $this->form;
-$form->setAttribute('action', $this->url(
-    'empresas',
-    array(
-        'action' => 'update',
-        'id'     => $this->id,
-    )
-));
+$form->setAttribute('action', $this->url('atestados', array('action' => 'update','id' => $this->id)));
 $form->prepare();
 
 echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('razao_social'));
-echo $this->formRow($form->get('cnpj'));
-echo $this->formRow($form->get('telefone_fixo'));
-echo $this->formRow($form->get('telefone_celular_1'));
-echo $this->formRow($form->get('telefone_celular_2'));
-echo $this->formRow($form->get('email'));
-echo $this->formRow($form->get('data_cadastro'));
-echo $this->formRow($form->get('cep'));
-echo $this->formRow($form->get('cidade'));
-echo $this->formRow($form->get('uf'));
-echo $this->formRow($form->get('logradouro'));
-echo $this->formRow($form->get('numero'));
-echo $this->formRow($form->get('bairro'));
-echo $this->formRow($form->get('complemento'));
-echo $this->formSubmit($form->get('submit'));
+echo $this->formHidden($form->get('funcionario_id'));
+?>
+<br>
+<div class="col-md-12 div-def">
+<table class="col-md-12" style="background:#f3f3f0;">
+    <tr>
+        <th>Funcionário</th>
+        <th>CPF</th>
+    </tr>
+    <tr>
+        <td>
+            <?php echo $funcionario->nome; ?>
+        </td>
+        <td>
+            <?php echo $funcionario->cpf; ?>
+        </td>
+    </tr>
+    <tr>
+        <th>Função</th>
+        <th>Data de Nascimento</th>
+    </tr>
+    <tr>
+        <td>
+            <?php echo $funcionario->funcao; ?>
+        </td>
+        <td>
+            <?php echo $funcionario->data_nascimento; ?>
+        </td>
+    </tr>
+</table>
+</div>
+<br>
+<div class="col-md-12 div-def">
+    <?php echo $this->formRow($form->get('data')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php echo $this->formRow($form->get('horas_abonadas')); ?>
+</div>
+<div class="col-md-12 div-def">
+    <?php echo $this->formRow($form->get('motivo')); ?>
+</div>
+<br>
+<div class="col-md-12 div-def">
+<a href="<?php echo $this->url('atestados',
+                    array('action'=>'index'));?>" class="btn btn-danger btn-lg active col-md-2 " role="button" aria-pressed="true">Cancelar</a>
+    <?php echo $this->formSubmit($form->get('submit')); ?>
+</div>
+
+<?php
 echo $this->form()->closeTag();

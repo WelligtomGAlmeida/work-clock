@@ -71,11 +71,6 @@ class FuncionariosTable
         }
     }
 
-    public function deleteFuncionarios($id)
-    {
-        $this->tableGateway->delete(array('id' => $id));
-    }
-
     public static function buscarDados($adapter,$id)
     {
         $sql = "select id,nome,DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento,pis_nis,cpf,funcao,DATE_FORMAT(data_cadastro, '%d/%m/%Y') as data_cadastro from funcionarios where id = " . $id;
