@@ -39,10 +39,19 @@
             .div-def{
                 margin:10px;
             }
+            .texto-rodape {
+                position: absolute;
+                z-index: 999;
+                left: 0;
+                right: 0;
+                top: 45%;
+                display: inline;
+                text-align: center;
+            }
         </style>
 
     </head>
-    <body>
+    <body class="position-relative" style="min-height: 94vh;">
         <?php
             if(isset($_SESSION['funcionario']))
             {
@@ -115,7 +124,7 @@
                             {
                         ?>   
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><b style="text-color:#ffffff;color:#ffffff;">Relatórios</b></a>
+                            <a class="nav-link" href="<?php echo $this->url('relatorios'); ?>"><b style="text-color:#ffffff;color:#ffffff;">Relatórios</b></a>
                         </li>
                         <?php 
                             }
@@ -145,12 +154,13 @@
             }
         ?>
 
-        <div class="container main-content col-md-10">
+        <div class="container main-content col-md-10" style="padding-bottom: 5em">
             <?php echo $this->content; ?>
-            
-            <div class="" align="center">
-                <hr>
-                <p>&copy; 2019 - <?php echo date('Y') ?> by FATEC - Ourinhos <?php echo $this->translate('All rights reserved.') ?></p>
+        </div>
+        <div class="position-absolute navbar-fixed-bottom footer" >
+        <p class="texto-rodape">&copy; 2019 - <?php echo date('Y') ?> by FATEC - Ourinhos <?php echo $this->translate('All rights reserved.') ?></p>
+            <div class="col-md-12 px-0 mt-3">
+                <img src="/img/rodape.svg" class="img-fluid" alt="">
             </div>
         </div>
         <?php echo $this->inlineScript() ?>
