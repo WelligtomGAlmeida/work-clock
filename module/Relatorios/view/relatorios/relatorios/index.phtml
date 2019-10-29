@@ -1,12 +1,100 @@
 <?php
 // module/Album/view/album/album/edit.phtml:
 
-$title = 'Empresa';
+$title = 'Relatórios';
 $this->headTitle($title);
 
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
-<label style="font-size:25px;color:#2c3b94;">Alterar</label>
-
-<h6><?php echo $this->nome; ?></h6>
-
+<label style="font-size:25px;color:#2c3b94;">Filtros</label>
+<br>
+<form method="post" name="relatorios" id="relatorios" action="/relatorios/relatorioGeral">
+<div class="col-md-12 div-def">
+    <div class="col-md-12 form-inline">
+        <div class="col-md-4">
+            <div class="">
+                Data Inicial
+            </div>
+            <input type="Date" class="form-control" id="data_inicial" name="data_inicial">
+        </div>
+        <div class="col-md-3">
+            Data Final
+            <input type="Date" class="form-control" id="data_final" name="data_final">
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12 form-inline">
+        <div class="col-md-4">
+            Informação Requisitada
+            <select class="form-control" name="informacao" id="informacao" style="width:100%;">
+                <option value="1">
+                    Todos os funcionários
+                </option>
+                <option value="2">
+                    Funcionários demitidos
+                </option>
+                <option value="3">
+                    Funcionários admitidos
+                </option>
+                <option value="4">
+                    Funcionários afastados
+                </option>
+                <option value="5">
+                    Funcionários com menos faltas
+                </option>
+                <option value="6">
+                    Funcionários com mais faltas
+                </option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <div class="">
+                Ordenar por
+            </div>
+            <select class="form-control" name="ordem" id="ordem" style="width:100%;">
+                <option value="1">
+                    Nome
+                </option>
+                <option value="2">
+                    Cadastros mais recentes
+                </option>
+                <option value="3">
+                    Cadastros mais antigos
+                </option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12 form-inline">
+        <div class="col-md-4">
+            Máx. de Linhas de Resultado
+            <select class="form-control" name="nlinhas" id="nlinhas" style="width:100%;">
+                <option value="0">
+                    Todas os registros
+                </option>
+                <option value="10">
+                    10
+                </option>
+                <option value="20">
+                    20
+                </option>
+                <option value="50">
+                    50
+                </option>
+                <option value="100">
+                    100
+                </option>
+                <option value="500">
+                    500
+                </option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12 form-inline">
+        <div class="col-md-5">
+            <input type="submit" class="btn btn-success btn-lg active " value="Gerar Relatório">
+        </div>
+    </div>
+</div>
+</form>

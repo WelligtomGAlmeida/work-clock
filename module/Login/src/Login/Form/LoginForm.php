@@ -16,7 +16,8 @@ class LoginForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'style' => 'width:250px;height:35px;border:none;',
-                'placeholder' => '  Usuário',
+                'placeholder' => 'Usuário',
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
@@ -24,7 +25,8 @@ class LoginForm extends Form
             'type'  => 'Password',
             'attributes' => array(
                 'style' => 'width:250px;height:35px;border:none;',
-                'placeholder' => '  Senha',
+                'placeholder' => 'Senha',
+                'class' => 'form-control',
             ),
         ));
         $this->add(array(
