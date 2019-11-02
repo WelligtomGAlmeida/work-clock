@@ -3,6 +3,7 @@ namespace Relatorios\Controller;
 
 use Relatorios\Model\RelatoriosTable;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
 class RelatoriosController extends AbstractActionController
 {
@@ -38,4 +39,71 @@ class RelatoriosController extends AbstractActionController
             'funcionarios'   => $funcionarios,
         );
     }
+
+    public function selecaoMesAction()
+    {
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $data_inicial = $request->getPost('data_inicial');
+            $data_final = $request->getPost('data_final');
+            $informacao = $request->getPost('informacao');
+            $ordem = $request->getPost('ordem');
+            $nlinhas = $request->getPost('nlinhas');
+
+            $funcionarios = RelatoriosTable::relatorioGeral($this->getAdapter(),$data_inicial,$data_final,$informacao,$ordem,$nlinhas);
+        }
+        else{
+            return array();
+        }
+        
+        return array();
+    }
+
+    public function consultaFuncionariosAction()
+    {
+        $request = $this->getRequest();
+        
+        if($request->isPost())
+        {
+            $id = (int) $request->getPost('id');
+            $nome = $request->getPost('nome');
+
+            $funcionarios = RelatoriosTable::consultarFuncionarios($this->getAdapter(),$id,$nome);
+        }
+        else{
+            $funcionarios = RelatoriosTable::consultarFuncionarios($this->getAdapter());
+        }
+
+        return array(
+            'funcionarios' => $funcionarios
+        );
+    }
+
+    public function folhaPontoAction()
+    {
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $data_inicial = $request->getPost('data_inicial');
+            $data_final = $request->getPost('data_final');
+            $informacao = $request->getPost('informacao');
+            $ordem = $request->getPost('ordem');
+            $nlinhas = $request->getPost('nlinhas');
+
+            $funcionarios = RelatoriosTable::relatorioGeral($this->getAdapter(),$data_inicial,$data_final,$informacao,$ordem,$nlinhas);
+        }
+        else{
+            //return $this->redirect()->toRoute('relatorios');
+        }
+
+        return array(
+            'funcionarios'   => $funcionarios,
+        );
+    }
+
+    public function pontoAction()
+    {
+        $viewModel = new ViewModel();
+        $viewModel->setTerminal(true);
+        return $viewModel;
+    } 
 }

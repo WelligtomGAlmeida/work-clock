@@ -1,0 +1,54 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Folha de Ponto';
+$this->headTitle($title);
+
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<label style="font-size:25px;color:#2c3b94;">Filtros</label>
+<br>
+<form method="post" name="relatorios" id="relatorios" action="/relatorios/relatorioFolhaPonto">
+<div class="col-md-12 div-def">
+    <div class="col-md-12 form-inline">
+        <div class="col-md-4">
+            <div class="">
+                Mês de Referência
+            </div>
+            <input type="text" class="form-control" id="mes" name="mes">
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12 form-inline">
+        <div class="col-md-4">
+            Informação Requisitada
+            <select class="form-control" name="informacao" id="informacao" style="width:100%;">
+                <option value="1">
+                    Todos os funcionários
+                </option>
+                <option value="2">
+                    Funcionários demitidos
+                </option>
+                <option value="3">
+                    Funcionários admitidos
+                </option>
+                <option value="4">
+                    Funcionários afastados
+                </option>
+                <option value="5">
+                    Funcionários com menos faltas
+                </option>
+                <option value="6">
+                    Funcionários com mais faltas
+                </option>
+            </select>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12 form-inline">
+        <div class="col-md-5">
+            <input type="submit" class="btn btn-success btn-lg active " value="Gerar Relatório">
+        </div>
+    </div>
+</div>
+</form>

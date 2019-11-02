@@ -32,19 +32,15 @@ class VariaveisEmpresaTable
     public function saveVariaveisEmpresa(VariaveisEmpresa $variaveisEmpresa)
     {
         $data = array(
-            'empresa_id' => $variaveisEmpresa->empresa_id,
             'ent_1' => $variaveisEmpresa->ent_1,
             'sai_1' => $variaveisEmpresa->sai_1,
             'ent_2' => $variaveisEmpresa->ent_2,
             'sai_2' => $variaveisEmpresa->sai_2,
-            'salario_padrao' => $variaveisEmpresa->salario_padrao,
-            'valor_hora_extra' => $variaveisEmpresa->valor_hora_extra,
             'horas_semanais' => $variaveisEmpresa->horas_semanais,
             'ent_sab_1' => $variaveisEmpresa->ent_sab_1,
             'sai_sab_1' => $variaveisEmpresa->sai_sab_1,
             'ent_sab_2' => $variaveisEmpresa->ent_sab_2,
             'sai_sab_2' => $variaveisEmpresa->sai_sab_2,
-            'valor_sindicato' => $variaveisEmpresa->valor_sindicato,
         );
 
         $id = (int) $variaveisEmpresa->id;

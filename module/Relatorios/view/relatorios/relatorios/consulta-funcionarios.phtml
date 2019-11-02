@@ -1,0 +1,82 @@
+<?php
+$title = 'Folha de Ponto';
+
+$this->headTitle($title);
+
+$funcionarios = $this->funcionarios;
+?>
+
+<h1>
+<?php echo $title; ?>
+</h1>
+<label style="font-size:25px;color:#2c3b94;">Selecione o Funcionário</label>
+
+<br><br>
+
+<form method="post" name="relatorios" action="/relatorios/consulta-funcionarios" id="relatorios">
+<div class="row form-inline form-group col-md-12"">
+
+    <div  class="col-md-2 col-sm-6">
+        <input type="text" id="id" name="id" class="form-control" placeholder="ID" style="margin-right:5px;width:100%;">
+    </div>
+    <div  class="col-md-5 col-sm-6">
+        <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" style="width:100%">
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <input type="submit" class="btn btn-md btn-primary " style="background:#0a315a;border-color:#0a315a;" value="Pesquisar">
+    </div>
+    <div class="col-md-2 col-sm-6" >
+        <select class="form-control" name="mes" id="mes">
+            <option value="2019-07">Julho de 2019</option>
+            <option value="2019-08">Agosto de 2019</option>
+            <option value="2019-09">Setembro de 2019</option>
+            <option value="2019-10">Outubro de 2019</option>
+        </select>
+    </div>
+</div>
+</form>
+<table class="table table-striped">
+    <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Função</th>
+        <th>Data Nasc.</th>
+        <th>
+            <input type="checkbox" name="todos" id="todos" onchange="marcarTodos()">
+        </th>
+    </tr>
+    <?php foreach ($funcionarios as $funcionario) : ?>
+    <tr>
+        <td><?php echo $funcionario->id;?></td>
+        <td><?php echo $funcionario->nome;?></td>
+        <td><?php echo $funcionario->funcao;?></td>
+        <td><?php echo $funcionario->data_nascimento;?></td>
+        <td>
+            <input type="checkbox" name="funcionarioscheck" id="funcionarioscheck" value="<?php echo $funcionario->id;?>">
+            <!--<div class="float-right">
+                <a href="<?php //echo $this->url('atestados',
+                    //array('action'=>'selecaoMes', 'id' => $funcionario->id));?>" class="btn btn-success btn-sm active"  role="button" aria-pressed="true">Selecionar</a>
+            </div>!-->
+        </td>
+    </tr>
+    <?php endforeach; ?>
+    </table>
+    <a  href="<?php echo $this->url('relatorios',
+                array('action'=>'selecao-mes', 'id' => 0));?>" class="btn btn-success btn-md active"  style="position: fixed;bottom: 90px;right:16px;" role="button" aria-pressed="true">Imprimir</a>
+    <script>    
+        $(document).ready(function(){
+            //
+        });
+
+        function marcarTodos(){
+            $('input[name=funcionarioscheck]').each(function(){
+                if ($(this).prop( "checked")) 
+                    $(this).prop("checked", false);
+                else $(this).prop("checked", true);               
+            })
+        };
+    </script>
+
+
+
+

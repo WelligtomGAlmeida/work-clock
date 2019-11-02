@@ -16,8 +16,9 @@ echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
 echo $this->formHidden($form->get('funcionario_id'));
 ?>
-<br>
-<div class="col-md-12 div-def">
+<div class="col-md-12 form-inline">
+<div class="col-md-12">
+    <br>
 <table class="col-md-12" style="background:#f3f3f0;">
     <tr>
         <th>Funcionário</th>
@@ -44,23 +45,38 @@ echo $this->formHidden($form->get('funcionario_id'));
         </td>
     </tr>
 </table>
-</div>
 <br>
-<div class="col-md-12 div-def">
+</div>
+
+<div class="col-md-3">
+    <div>
+        Data Inicial*
+    </div>
     <?php echo $this->formRow($form->get('data_ini')); ?>
 </div>
-<div class="col-md-12 div-def">
+<div class="col-md-3">
+    <div>
+        Data Final*
+    </div>
     <?php echo $this->formRow($form->get('data_fim')); ?>
 </div>
-<div class="col-md-12 div-def">
+<div class="col-md-3">
+    <div>
+        Tipo*
+    </div>
     <?php echo $this->formRow($form->get('tipo')); ?>
 </div>
-<div class="col-md-12 div-def">
+<div class="col-md-12">
+    <div>
+        Observação*
+    </div>
     <?php echo $this->formRow($form->get('observacao')); ?>
 </div>
-<br>
-<div class="col-md-12 div-def">
-<a href="<?php echo $this->url('afastarFuncionario',
+
+<div class="col-md-12">
+    <br>
+    <a href="<?php echo $this->url('afastarFuncionario',
                     array('action'=>'index'));?>" class="btn btn-danger btn-lg active col-md-2 " role="button" aria-pressed="true">Cancelar</a>
     <?php echo $this->formSubmit($form->get('submit')); ?>
+</div>
 </div>

@@ -20,9 +20,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'nome',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Nome *',
-            ),
             'attributes' => array(
                 'class' => 'form-control',
             ),
@@ -31,7 +28,6 @@ class FuncionariosForm extends Form
             'name' => 'sexo',
             'type' => 'Select',
             'options' => array(
-                'label' => 'Sexo *',
                 'options' => array('0' => '','M' => 'Masculino','F' => 'Feminino')
             ),
             'attributes' => array(
@@ -41,9 +37,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'data_nascimento',
             'type' => 'Date',
-            'options' => array(
-                'label' => 'Data de Nascimento *',
-            ),
             'attributes' => array(
                 'class' => 'form-control',
             ),
@@ -51,9 +44,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'data_cadastro',
             'type' => 'Hidden',
-            'options' => array(
-                'label' => 'Data de Cadastro *',
-            ),
             'attributes' => array(
                 'class' => 'form-control',
             ),
@@ -61,9 +51,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'rg',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'RG *',
-            ),
             'attributes' => array(
                 'class' => 'form-control rg',
             ),
@@ -71,9 +58,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'cpf',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'CPF *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -81,9 +65,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'pis_nis',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'PIS/NIS *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -91,9 +72,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'telefone_fixo',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Telefone Fixo',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -101,9 +79,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'telefone_celular_1',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Celular 1 *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -111,9 +86,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'telefone_celular_2',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Celular 2',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -121,9 +93,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'email',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'E-mail',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -131,9 +100,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'salario',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Salário *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -141,9 +107,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'funcao',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Função *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -152,7 +115,6 @@ class FuncionariosForm extends Form
             'name' => 'perfil',
             'type' => 'Select',
             'options' => array(
-                'label' => 'Perfil *',
                 'options' => array('1' => 'Administrador','2' => 'Gerente','3' => 'Funcionário Comum')
             ),
             'attributes' => array(
@@ -162,9 +124,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'user_name',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Nome de Usuário *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -172,9 +131,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'senha',
             'type' => 'password',
-            'options' => array(
-                'label' => 'Senha *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -182,9 +138,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'data_admissao',
             'type' => 'Date',
-            'options' => array(
-                'label' => 'Data de Admissao *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -192,9 +145,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'cep',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'CEP *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -202,9 +152,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'cidade',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Cidade *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -213,7 +160,6 @@ class FuncionariosForm extends Form
             'name' => 'uf',
             'type' => 'Select',
             'options' => array(
-                'label' => 'Estado *',
                 'options' => array( '' => 'Selecione o estado',
                                     'AC' => 'Acre',
                                     'AL' => 'Alagoas',
@@ -251,9 +197,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'logradouro',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Logradouro *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -261,9 +204,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'numero',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Número *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -271,9 +211,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'bairro',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Bairro *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -281,9 +218,6 @@ class FuncionariosForm extends Form
         $this->add(array(
             'name' => 'complemento',
             'type' => 'Text',
-            'options' => array(
-                'label' => 'Complemento',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),

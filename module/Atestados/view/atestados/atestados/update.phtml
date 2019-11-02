@@ -17,7 +17,8 @@ echo $this->formHidden($form->get('id'));
 echo $this->formHidden($form->get('funcionario_id'));
 ?>
 <br>
-<div class="col-md-12 div-def">
+<div class="col-md-12 form-inline">
+<div class="col-md-12">
 <table class="col-md-12" style="background:#f3f3f0;">
     <tr>
         <th>Funcionário</th>
@@ -44,22 +45,34 @@ echo $this->formHidden($form->get('funcionario_id'));
         </td>
     </tr>
 </table>
+<br>
 </div>
 <br>
-<div class="col-md-12 div-def">
+<div class="col-md-3">
+    <div>
+        Data*
+    </div>
     <?php echo $this->formRow($form->get('data')); ?>
 </div>
-<div class="col-md-12 div-def">
+<div class="col-md-3">
+    <div>
+        Horas Abonadas*
+    </div>
     <?php echo $this->formRow($form->get('horas_abonadas')); ?>
 </div>
-<div class="col-md-12 div-def">
+<div class="col-md-12">
+    <div>
+        Motivo*
+    </div>
     <?php echo $this->formRow($form->get('motivo')); ?>
 </div>
-<br>
-<div class="col-md-12 div-def">
-<a href="<?php echo $this->url('atestados',
+
+<div class="col-md-12">
+    <br>
+    <a href="<?php echo $this->url('atestados',
                     array('action'=>'index'));?>" class="btn btn-danger btn-lg active col-md-2 " role="button" aria-pressed="true">Cancelar</a>
     <?php echo $this->formSubmit($form->get('submit')); ?>
+</div>
 </div>
 
 <?php

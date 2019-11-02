@@ -25,9 +25,6 @@ class AfastarFuncionarioForm extends Form
         $this->add(array(
             'name' => 'data_ini',
             'type' => 'Date',
-            'options' => array(
-                'label' => 'Data de Início *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -35,9 +32,6 @@ class AfastarFuncionarioForm extends Form
         $this->add(array(
             'name' => 'data_fim',
             'type' => 'Date',
-            'options' => array(
-                'label' => 'Data de Fim *',
-            ),
             'attributes' => array(
                 'class' => 'form-control'
             ),
@@ -46,7 +40,6 @@ class AfastarFuncionarioForm extends Form
             'name' => 'tipo',
             'type' => 'Select',
             'options' => array(
-                'label' => 'Tipo *',
                 'options' => array('1' => 'Tipo 1','2' => 'Tipo 1','3' => 'Tipo 3')
             ),
             'attributes' => array(
@@ -55,11 +48,9 @@ class AfastarFuncionarioForm extends Form
         ));
         $this->add(array(
             'name' => 'observacao',
-            'type' => 'Text',
-            'options' => array(
-                'label' => 'Observação *',
-            ),
+            'type' => 'TextArea',
             'attributes' => array(
+                'style' => 'resize: none; width: 500px;height:150px;',
                 'class' => 'form-control'
             ),
         ));

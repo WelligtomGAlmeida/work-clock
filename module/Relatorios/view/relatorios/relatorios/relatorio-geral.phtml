@@ -7,17 +7,36 @@ $this->headTitle($title);
 ?>
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <label style="font-size:25px;color:#2c3b94;">Resultados</label>
-<br>
+<br><br>
+<table class="table table-striped" style="size:10">
+<tr>
+    <th>Código</th>
+    <th>Nome</th>
+    <th>Sexo</th>
+    <th>Data de Nascimento</th>
+    <th>CPF</th>
+    <th>Celular</th>
+    <th>Função</th>
+    <th>Data de Admissão</th>
+</tr>
 <?php
     $funcionarios = $this->funcionarios;
     
     foreach ($funcionarios as $funcionario)
     {
 ?>
-    <label><?php echo $funcionario->olha ?></label>
-
-
+<tr>
+    <td><?php echo $this->escapeHtml($funcionario->id);?></td>
+    <td><?php echo $this->escapeHtml($funcionario->nome);?></td>
+    <td><?php echo $this->escapeHtml($funcionario->sexo);?></td>
+    <td><?php echo $this->escapeHtml($funcionario->data_nascimento);?></td>
+    <td><?php echo $this->escapeHtml($funcionario->cpf);?></td>
+    <td><?php echo $this->escapeHtml($funcionario->telefone_celular_1);?></td>
+    <td><?php echo $this->escapeHtml($funcionario->funcao);?></td>
+    <td><?php echo $this->escapeHtml($funcionario->data_admissao);?></td>
+</tr>
 <?php        
     }
     
 ?>
+</table>

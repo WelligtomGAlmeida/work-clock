@@ -27,4 +27,20 @@ class RelatoriosTable
         return $result;
     }
     
+    public static function consultarFuncionarios($adapter,$id = Null,$nome = Null)
+    {
+        $resultSet = new ResultSet();
+        if($id != Null && $nome == Null)
+            $sql = "select * from funcionarios where id = " . $id;
+        else if($id == Null && $nome != Null)
+            $sql = "select * from funcionarios where nome like '%" . $nome . "%'";
+        else if($id != Null && $nome != Null)
+            $sql = "select * from funcionarios where nome like '%" . $nome . "%' and id = " . $id;
+        else
+            $sql = "select * from funcionarios";            
+
+        $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $resultSet;
+    }
 }
