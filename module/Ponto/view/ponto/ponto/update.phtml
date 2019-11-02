@@ -2,13 +2,15 @@
 
 $title = 'Registrar Ponto';
 $this->headTitle($title);
+
+$rows = 0;
 ?>
 
 <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
 
 <script>
     $(document).ready(function () {
-        window.setInterval(RetornaDataHoraAtual, 1000);
+        window.setInterval(RetornaDataHoraAtual, 250);
     });
 
     function RetornaDataHoraAtualFormatado()
@@ -33,8 +35,28 @@ $this->headTitle($title);
 
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <div class="col-md-12">
-    <div class="col-md-5" style="text-align:right;margin:50px;color:#5d669c;">
+    <div class="col-md-5" style="text-align:left;margin:50px;color:#5d669c;">
         <h4 id="data"></h4>
+    </div>
+    <div class="col-md-5" style="text-align:left;margin:50px;color:#7c7d84;">
+        <table style="text-align: center;font-size: 16px;">
+            <tr>
+                <th style="width:100px">Entradas</th>
+                <th style="width:100px">Saídas</th>
+            </tr>
+            <?php foreach ($this->pontos as $ponto) : ?>
+                <tr>
+                    <td><?php echo $ponto->hora_entrada;?></td>
+                    <td><?php echo $ponto->hora_saida;?></td>
+                </tr>            
+                <?php $rows += 1;?>
+            <?php endforeach; ?>
+            <?php if($rows < 1):?>
+                <tr>
+                    <td colspan="2">Não há registros</td>
+                </tr>
+            <?php endif;?>
+        </table>
     </div>
 </div>
 
@@ -46,11 +68,11 @@ $form->prepare();
 
 echo $this->form()->openTag($form);
 echo $this->formHidden($form->get('id'));
-echo $this->formRow($form->get('funcionario_id'));
-echo $this->formRow($form->get('hora_entrada'));
-echo $this->formRow($form->get('hora_saida'));
+echo $this->formHidden($form->get('funcionario_id'));
+echo $this->formHidden($form->get('hora_entrada'));
+echo $this->formHidden($form->get('hora_saida'));
 ?>
-<div class="col-md-12" style="text-align:right;">
+<div class="col-md-12" style="text-align:right;height: 62px;">
     <?php echo $this->formSubmit($form->get('submit'));?>
 </div>
 

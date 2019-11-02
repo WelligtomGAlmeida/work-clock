@@ -2,6 +2,7 @@
 namespace Ponto\Model;
 
 use Zend\Db\Adapter\Adapter;
+use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
 class PontoTable
@@ -67,13 +68,13 @@ class PontoTable
         date_default_timezone_set('America/Sao_Paulo');
         $data = date('Y-m-d');
 
-        // Verifca se já existem mais de três pontos registrados no dia
+        // Verifca se já existem mais de cinco pontos registrados no dia
         //      se existir então nã deixa registrar outro
         //      caso contrario deixa
         $sql = "select count(0) as contador from ponto_funcionario where funcionario_id = '" . $_SESSION['funcionario']->id . "' and DATE(hora_entrada) = '" . $data ."' and hora_saida is not null";
         $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
         
-        if ($result->current()['contador'] >= 3)
+        if ($result->current()['contador'] >= 5)
         {
             return array(
                 "acao"  => "0",
@@ -120,9 +121,14 @@ class PontoTable
             }
         }
     }
-
-    public function deletePonto($id)
+ 
+    public static function consultarPontosHoje($adapter,$id)
     {
-        $this->tableGateway->delete(array('id' => $id));
+        $sql = "select TIME_FORMAT(hora_entrada, '%H:%i') as hora_entrada,TIME_FORMAT(hora_saida, '%H:%i') as hora_saida from ponto_funcionario where DATE_FORMAT(hora_entrada, '%Y-%m-%d') = CURDATE() and funcionario_id = " . $id;          
+
+        $result = new ResultSet();
+        $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $result;
     }
 }

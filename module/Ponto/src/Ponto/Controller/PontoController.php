@@ -57,7 +57,7 @@ class PontoController extends AbstractActionController
         $form = new PontoForm();
         $form->get('submit')->setValue('Registrar Entrada');
         $resultado = PontoTable::travaRegistro($this->getAdapter());
-        $trava = $resultado['contador'] >= 3 ? 1 : 0;
+        $trava = $resultado['contador'] >= 5 ? 1 : 0;
 
         $request = $this->getRequest();
         if ($request->isPost()) {
@@ -72,9 +72,13 @@ class PontoController extends AbstractActionController
             return $this->redirect()->toRoute('ponto', array('action' => 'direcionaPonto'));
             
         }
+
+        $pontos = PontoTable::consultarPontosHoje($this->getAdapter(),$_SESSION['funcionario']->id);
+
         return array(
             'form' => $form,
-            'trava' => $trava
+            'trava' => $trava,
+            'pontos' => $pontos
         );
     }
 
@@ -101,8 +105,12 @@ class PontoController extends AbstractActionController
             return $this->redirect()->toRoute('ponto', array('action' => 'direcionaPonto'));
             
         }
+
+        $pontos = PontoTable::consultarPontosHoje($this->getAdapter(),$_SESSION['funcionario']->id);
+
         return array(
-            'form' => $form
+            'form' => $form,
+            'pontos' => $pontos
         );
 
     }
