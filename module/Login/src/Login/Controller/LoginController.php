@@ -47,7 +47,7 @@ class LoginController extends AbstractActionController
                     }
                     else
                     {
-                        return $this->redirect()->toRoute('empresas', array('action' => 'index'));
+                        return $this->redirect()->toRoute('home');
                     }
                     
                     

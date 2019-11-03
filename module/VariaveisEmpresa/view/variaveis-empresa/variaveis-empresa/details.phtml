@@ -1,0 +1,89 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Configurações';
+$this->headTitle($title);
+$variaveisEmpresa = $this->variaveisEmpresa;
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<label style="font-size:25px;color:#2c3b94;">Detalhes</label>
+
+<div class="col-md-12" style="margin:0px;padding-right:30px;">
+    <p style="float:right;" >
+        <a href="<?php echo $this->url('variaveisEmpresa', array('action'=>'update'));?>" class="btn btn-primary btn-md active" style="background:#0a315a;border-color:#0a315a;" role="button" aria-pressed="true">Alterar</a>
+    </p>
+</div>   
+
+<div class="col-md-12 form-inline"> 
+<div class="col-md-12">
+    <br>
+    <h5>Horário de Trabalho</h5>
+    <hr>
+</div>
+<div class="col-md-3 div-def">
+    <div style="font-weight: bold;">
+        Entrada
+    </div>
+    <?php echo $variaveisEmpresa->ent_1;?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Intervalo
+    </div>
+    <?php echo $variaveisEmpresa->sai_1;?>
+</div>
+<div class="col-md-3 div-def">
+    <div style="font-weight: bold;">
+        Retorno
+    </div>
+    <?php echo $variaveisEmpresa->ent_2;?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Saída
+    </div>
+    <?php echo $variaveisEmpresa->sai_2;?>
+</div>
+
+<div class="col-md-12">
+    <br>
+    <h5>Horário de Trabalho aos Sábados</h5>
+    <hr>
+</div>
+<div class="col-md-3 div-def">
+    <div style="font-weight: bold;">
+        Entrada
+    </div>
+    <?php if($variaveisEmpresa->ent_sab_1) echo $variaveisEmpresa->ent_sab_1; else echo '-';?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Intervalo
+    </div>
+    <?php if($variaveisEmpresa->sai_sab_1) echo $variaveisEmpresa->sai_sab_1; else echo '-';?>
+</div>
+<div class="col-md-3 div-def">
+    <div style="font-weight: bold;">
+        Retorno
+    </div>
+    <?php if($variaveisEmpresa->ent_sab_2) echo $variaveisEmpresa->ent_sab_2; else echo '-';?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Saída
+    </div>
+    <?php if($variaveisEmpresa->sai_sab_2) echo $variaveisEmpresa->sai_sab_2; else echo '-';?>
+</div>
+
+<div class="col-md-12">
+    <br>
+    <h5>Carga Horária</h5>
+    <hr>
+</div>
+<div class="col-md-3 div-def">
+    <div style="font-weight: bold;">
+        Horas Semanais
+    </div>
+    <?php if($variaveisEmpresa->horas_semanais) echo $variaveisEmpresa->horas_semanais; else echo '-';?>
+</div>
+</div>

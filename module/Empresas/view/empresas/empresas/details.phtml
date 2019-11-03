@@ -1,0 +1,113 @@
+<?php
+// module/Album/view/album/album/edit.phtml:
+
+$title = 'Empresa';
+$this->headTitle($title);
+$empresa = $this->empresa;
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<label style="font-size:25px;color:#2c3b94;">Detalhes</label>
+
+<div class="col-md-12" style="margin:0px;padding-right:30px;">
+    <p style="float:right;" >
+        <a href="<?php echo $this->url('empresas', array('action'=>'update'));?>" class="btn btn-primary btn-md active" style="background:#0a315a;border-color:#0a315a;" role="button" aria-pressed="true">Alterar</a>
+    </p>
+</div>   
+
+<div class="col-md-12 form-inline"> 
+<div class="col-md-12">
+    <br>
+    <h5>Dados da Empresa</h5>
+    <hr>
+</div>
+<div class="col-md-6 div-def">
+    <div style="font-weight: bold;">
+        Razão Social
+    </div>
+    <?php echo $empresa->razao_social;?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        CNPJ
+    </div>
+    <?php echo $empresa->cnpj;?>
+</div>
+
+<div class="col-md-12">
+    <br>
+    <h5>Contato</h5>
+    <hr>
+</div>
+<div class="col-md-3 div-def">
+    <div style="font-weight: bold;">
+        Telefone Fixo
+    </div>
+    <?php if($empresa->telefone_fixo) echo $empresa->telefone_fixo; else echo '-';?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Celular 1
+    </div>
+    <?php if($empresa->telefone_celular_1) echo $empresa->telefone_celular_1; else echo '-';?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Celular 2
+    </div>
+    <?php if($empresa->telefone_celular_2) echo $empresa->telefone_celular_2; else echo '-';?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        E-mail
+    </div>
+    <?php if($empresa->email) echo $empresa->email; else echo '-';?>
+</div>
+
+<div class="col-md-12">
+    <br>
+    <h5>Endereço</h5>
+    <hr>
+</div>
+<div class="col-md-3 div-def">
+    <div style="font-weight: bold;">
+        CEP
+    </div>
+    <?php if($empresa->cep) echo $empresa->cep; else echo '-';?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Cidade
+    </div>
+    <?php if($empresa->cidade) echo $empresa->cidade; else echo '-';?>
+</div>
+<div class="col-md-6 div-def" >
+    <div style="font-weight: bold;">
+        Estado
+    </div>
+    <?php if($empresa->uf) echo $empresa->uf; else echo '-';?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Logradouro
+    </div>
+    <?php if($empresa->logradouro) echo $empresa->logradouro; else echo '-';?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Número
+    </div>
+    <?php if($empresa->numero) echo $empresa->numero; else echo '-';?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Bairro
+    </div>
+    <?php if($empresa->bairro) echo $empresa->bairro; else echo '-';?>
+</div>
+<div class="col-md-3 div-def" >
+    <div style="font-weight: bold;">
+        Complemento
+    </div>
+    <?php if($empresa->complemento) echo $empresa->complemento; else echo '-';?>
+</div>
+</div>

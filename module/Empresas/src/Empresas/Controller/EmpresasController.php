@@ -5,10 +5,18 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Empresas\Model\Empresas;
 use Empresas\Form\EmpresasForm;
+use Empresas\Model\EmpresasTable;
 
 class EmpresasController extends AbstractActionController
 {
     protected $empresasTable;
+
+    public function getAdapter()
+    {
+        $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+
+        return $adapter;
+    }
 
     public function getEmpresasTable()
     {
@@ -22,24 +30,25 @@ class EmpresasController extends AbstractActionController
     public function indexAction()
     {
         return $this->redirect()->toRoute('empresas', array(
-            'action'    => 'update',
-            'id'        => $_SESSION['empresa']
+            'action'    => 'details'
         )); 
+    }
+
+    public function detailsAction()
+    {
+        $empresa = EmpresasTable::consultarEmpresa($this->getAdapter());
+        
+        return array(
+            'empresa' => $empresa
+        );
     }
 
     public function updateAction()
     {
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if (!$id) {
-            return $this->redirect()->toRoute('empresas', array(
-                'action' => 'index'
-            ));
-        }
-
         // Requisita um ALbum com id específico. Uma exceção é disparada caso
         // ele não seja encontrado, nesse caso redirecione para a págin incial.
         try {
-            $empresas = $this->getEmpresasTable()->getEmpresas($id);
+            $empresas = $this->getEmpresasTable()->getEmpresas($_SESSION['empresa']);
         }
         catch (\Exception $ex) {
             return $this->redirect()->toRoute('empresas', array(
@@ -65,7 +74,7 @@ class EmpresasController extends AbstractActionController
         }
 
         return array(
-            'id' => $id,
+            'id' => $_SESSION['empresa'],
             'form' => $form,
         );
 

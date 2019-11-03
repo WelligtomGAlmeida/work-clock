@@ -5,10 +5,18 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use VariaveisEmpresa\Model\VariaveisEmpresa;
 use VariaveisEmpresa\Form\VariaveisEmpresaForm;
+use VariaveisEmpresa\Model\VariaveisEmpresaTable;
 
 class VariaveisEmpresaController extends AbstractActionController
 {
     protected $variaveisEmpresaTable;
+
+    public function getAdapter()
+    {
+        $adapter = $this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+
+        return $adapter;
+    }
 
     public function getVariaveisEmpresaTable()
     {
@@ -22,24 +30,25 @@ class VariaveisEmpresaController extends AbstractActionController
     public function indexAction()
     {
         return $this->redirect()->toRoute('variaveisEmpresa', array(
-            'action'    => 'update',
-            'id'        => $_SESSION['variaveisEmpresa']
+            'action'    => 'details',
         )); 
+    }
+
+    public function detailsAction()
+    {
+        $variaveisEmpresa = VariaveisEmpresaTable::consultarVariaveisEmpresa($this->getAdapter());
+        
+        return array(
+            'variaveisEmpresa' => $variaveisEmpresa
+        );
     }
 
     public function updateAction()
     {
-        $id = (int) $this->params()->fromRoute('id', 0);
-        if (!$id) {
-            return $this->redirect()->toRoute('empresas', array(
-                'action' => 'home'
-            ));
-        }
-
         // Requisita um ALbum com id específico. Uma exceção é disparada caso
         // ele não seja encontrado, nesse caso redirecione para a págin incial.
         try {
-            $variaveisEmpresa = $this->getVariaveisEmpresaTable()->getVariaveisEmpresa($id);
+            $variaveisEmpresa = $this->getVariaveisEmpresaTable()->getVariaveisEmpresa($_SESSION['variaveisEmpresa']);
         }
         catch (\Exception $ex) {
             return $this->redirect()->toRoute('empresas', array(
@@ -67,7 +76,7 @@ class VariaveisEmpresaController extends AbstractActionController
         }
 
         return array(
-            'id' => $id,
+            'id' => $_SESSION['variaveisEmpresa'],
             'form' => $form,
         );
 

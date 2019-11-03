@@ -1,6 +1,7 @@
 <?php
 namespace Empresas\Model;
 
+use Zend\Db\Adapter\Adapter;
 use Zend\Db\TableGateway\TableGateway;
 
 class EmpresasTable
@@ -58,5 +59,14 @@ class EmpresasTable
                 throw new \Exception('Esta empresa não existe');
             }
         }
+    }
+
+    public static function consultarEmpresa($adapter)
+    {
+        $sql = "select * from empresas order by data_cadastro LIMIT 1";          
+
+        $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $result->current();
     }
 }

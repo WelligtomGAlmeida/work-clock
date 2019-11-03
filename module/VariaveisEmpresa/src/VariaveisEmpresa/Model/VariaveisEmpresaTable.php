@@ -1,6 +1,7 @@
 <?php
 namespace VariaveisEmpresa\Model;
 
+use Zend\Db\Adapter\Adapter;
 use Zend\Db\TableGateway\TableGateway;
 
 class VariaveisEmpresaTable
@@ -53,5 +54,14 @@ class VariaveisEmpresaTable
                 throw new \Exception('Esta configuração não existe');
             }
         }
+    }
+
+    public static function consultarVariaveisEmpresa($adapter)
+    {
+        $sql = "select * from variaveis_empresa LIMIT 1";          
+
+        $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $result->current();
     }
 }
