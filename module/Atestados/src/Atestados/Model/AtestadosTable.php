@@ -1,6 +1,7 @@
 <?php
 namespace Atestados\Model;
 
+use Zend\Authentication\Storage\Session;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
@@ -61,13 +62,13 @@ class AtestadosTable
     {
         $resultSet = new ResultSet();
         if($id != Null && $nome == Null)
-            $sql = "select * from funcionarios where id = " . $id;
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id = " . $id . " and id <> " . $_SESSION['funcionario']->id;
         else if($id == Null && $nome != Null)
-            $sql = "select * from funcionarios where nome like '%" . $nome . "%'";
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where nome like '%" . $nome . "%' and id <> " . $_SESSION['funcionario']->id;
         else if($id != Null && $nome != Null)
-            $sql = "select * from funcionarios where nome like '%" . $nome . "%' and id = " . $id;
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where nome like '%" . $nome . "%' and id = " . $id . " and id <> " . $_SESSION['funcionario']->id;
         else
-            $sql = "select * from funcionarios";            
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id <> " . $_SESSION['funcionario']->id;            
 
         $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
 
@@ -85,10 +86,21 @@ class AtestadosTable
 
     public static function buscarDados($adapter,$id)
     {
-        $sql = "select fa.id,f.nome,data,horas_abonadas,motivo from atestados fa inner join funcionarios f on fa.funcionario_id = f.id where fa.id = " . $id;
+        $sql = "select fa.id,f.nome,DATE_FORMAT(data, '%d/%m/%Y') as data,horas_abonadas,motivo from atestados fa inner join funcionarios f on fa.funcionario_id = f.id where fa.id = " . $id;
 
         $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
 
         return $result->current();
+    }
+
+    public static function buscarTodos($adapter)
+    {
+        $sql = "select a.id,DATE_FORMAT(data, '%d/%m/%Y') as data,f.nome,horas_abonadas from atestados a inner join funcionarios f on f.id = a.funcionario_id";
+
+        $resultSet = new ResultSet();
+
+        $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $resultSet;
     }
 }

@@ -30,7 +30,9 @@ class AtestadosForm extends Form
             'name' => 'horas_abonadas',
             'type' => 'Text',
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'id' => 'horas_abonadas',
+                'maxlength' => '1',
             ),
         ));
         $this->add(array(
@@ -38,7 +40,9 @@ class AtestadosForm extends Form
             'type' => 'TextArea',
             'attributes' => array(
                 'style' => 'resize: none; width: 500px;height:150px;',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'id' => 'motivo',
+                'maxlength' => '100',
             ),
         ));
         $this->add(array(

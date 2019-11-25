@@ -40,7 +40,7 @@ class AfastarFuncionarioForm extends Form
             'name' => 'tipo',
             'type' => 'Select',
             'options' => array(
-                'options' => array('1' => 'Tipo 1','2' => 'Tipo 1','3' => 'Tipo 3')
+                'options' => array('1' => 'Demissão','2' => 'Férias','3' => 'Licenca Maternidade','4' => 'Licenca Paternidade','5' => 'Licença para tratamento de saúde')
             ),
             'attributes' => array(
                 'class' => 'form-control'
@@ -51,7 +51,9 @@ class AfastarFuncionarioForm extends Form
             'type' => 'TextArea',
             'attributes' => array(
                 'style' => 'resize: none; width: 500px;height:150px;',
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'id' => 'observacao',
+                'maxlength' => '200',
             ),
         ));
         $this->add(array(

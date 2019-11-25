@@ -62,13 +62,13 @@ class AfastarFuncionarioTable
     {
         $resultSet = new ResultSet();
         if($id != Null && $nome == Null)
-            $sql = "select * from funcionarios where id = " . $id;
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id = " . $id . " and id <> " . $_SESSION['funcionario']->id;
         else if($id == Null && $nome != Null)
-            $sql = "select * from funcionarios where nome like '%" . $nome . "%'";
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where nome like '%" . $nome . "%' and id <> " . $_SESSION['funcionario']->id;
         else if($id != Null && $nome != Null)
-            $sql = "select * from funcionarios where nome like '%" . $nome . "%' and id = " . $id;
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where nome like '%" . $nome . "%' and id = " . $id . " and id <> " . $_SESSION['funcionario']->id;
         else
-            $sql = "select * from funcionarios";            
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id <> " . $_SESSION['funcionario']->id;            
 
         $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
 
@@ -93,4 +93,14 @@ class AfastarFuncionarioTable
         return $result->current();
     }
 
+    public static function buscarTodos($adapter)
+    {
+        $sql = "select a.id,DATE_FORMAT(data_ini, '%d/%m/%Y') as data,f.nome,ta.descricao as tipo from funcionarios_afastados a inner join funcionarios f on f.id = a.funcionario_id inner join tipo_afastamento ta on a.tipo = ta.id";
+
+        $resultSet = new ResultSet();
+
+        $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $resultSet;
+    } 
 }

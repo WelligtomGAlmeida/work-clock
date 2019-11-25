@@ -20,6 +20,8 @@ class EmpresasForm extends Form
             'attributes' => array(
                 'class' => 'form-control',
                 'style' => 'width:100%;',
+                'id' => 'razao_social',
+                'maxlength' => '100',
             ),
         ));
         $this->add(array(
@@ -27,7 +29,9 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
-                'style' => 'width: 100'
+                'style' => 'width: 100',
+                'id' => 'cnpj',
+                'maxlength' => '18',
             ),
         ));
         $this->add(array(
@@ -35,6 +39,8 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'telefone_fixo',
+                'maxlength' => '14',
             ),
         ));
         $this->add(array(
@@ -42,6 +48,8 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'telefone_celular_1',
+                'maxlength' => '15',
             ),
         ));
         $this->add(array(
@@ -49,6 +57,8 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'telefone_celular_2',
+                'maxlength' => '15',
             ),
         ));
         $this->add(array(
@@ -56,6 +66,8 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'email',
+                'maxlength' => '50',
             ),
         ));
         $this->add(array(
@@ -66,6 +78,7 @@ class EmpresasForm extends Form
             ),
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'data_cadastro',
             ),
         ));
         $this->add(array(
@@ -73,6 +86,8 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'cep',
+                'maxlength' => '9',
             ),
         ));
         $this->add(array(
@@ -80,6 +95,8 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'cidade',
+                'maxlength' => '50',
             ),
         ));
         $this->add(array(
@@ -118,6 +135,7 @@ class EmpresasForm extends Form
             ),
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'uf',
             ),
         ));
         $this->add(array(
@@ -125,6 +143,8 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'logradouro',
+                'maxlength' => '70',
             ),
         ));
         $this->add(array(
@@ -132,6 +152,8 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'numero',
+                'maxlength' => '10',
             ),
         ));
         $this->add(array(
@@ -139,6 +161,8 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'bairro',
+                'maxlength' => '50',
             ),
         ));
         $this->add(array(
@@ -146,6 +170,8 @@ class EmpresasForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'class' => 'form-control',
+                'id' => 'complemento',
+                'maxlength' => '20',
             ),
         ));
         $this->add(array(

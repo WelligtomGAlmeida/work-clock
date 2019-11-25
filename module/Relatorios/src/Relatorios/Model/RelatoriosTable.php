@@ -31,13 +31,13 @@ class RelatoriosTable
     {
         $resultSet = new ResultSet();
         if($id != Null && $nome == Null)
-            $sql = "select * from funcionarios where id = " . $id;
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id = " . $id . " and id <> " . $_SESSION['funcionario']->id;
         else if($id == Null && $nome != Null)
-            $sql = "select * from funcionarios where nome like '%" . $nome . "%'";
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where nome like '%" . $nome . "%' and id <> " . $_SESSION['funcionario']->id;
         else if($id != Null && $nome != Null)
-            $sql = "select * from funcionarios where nome like '%" . $nome . "%' and id = " . $id;
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where nome like '%" . $nome . "%' and id = " . $id . " and id <> " . $_SESSION['funcionario']->id;
         else
-            $sql = "select * from funcionarios";            
+            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id <> " . $_SESSION['funcionario']->id;            
 
         $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
 

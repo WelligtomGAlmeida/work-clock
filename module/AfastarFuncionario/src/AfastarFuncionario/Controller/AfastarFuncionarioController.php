@@ -31,7 +31,7 @@ class AfastarFuncionarioController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'afastarFuncionario' => $this->getAfastarFuncionarioTable()->fetchAll(),
+            'afastarFuncionario' => AfastarFuncionarioTable::buscarTodos($this->getAdapter()),
         ));
     }
 

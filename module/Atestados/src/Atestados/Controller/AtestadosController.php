@@ -30,7 +30,7 @@ class AtestadosController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'atestados' => $this->getAtestadosTable()->fetchAll(),
+            'atestados' => AtestadosTable::buscarTodos($this->getAdapter()),
         ));
     }
 

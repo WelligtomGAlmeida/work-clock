@@ -18,63 +18,72 @@ class VariaveisEmpresaForm extends Form
             'name' => 'ent_1',
             'type' => 'Text',
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control hora',
+                'id' => 'ent_1',
             ),
         ));
         $this->add(array(
             'name' => 'sai_1',
             'type' => 'Text',
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control hora',
+                'id' => 'sai_1',
             ),
         ));
         $this->add(array(
             'name' => 'ent_2',
             'type' => 'Text',
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control hora',
+                'id' => 'ent_2',
             ),
         ));
         $this->add(array(
             'name' => 'sai_2',
             'type' => 'Text',
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control hora',
+                'id' => 'sai_2',
             ),
         ));
         $this->add(array(
             'name' => 'horas_semanais',
             'type' => 'Text',
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'id' => 'horas_semanais',
             ),
         ));
         $this->add(array(
             'name' => 'ent_sab_1',
             'type' => 'Text',
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control hora',
+                'id' => 'ent_sab_1',
             ),
         ));
         $this->add(array(
             'name' => 'sai_sab_1',
             'type' => 'Text',
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control hora',
+                'id' => 'sai_sab_1',
             ),
         ));
         $this->add(array(
             'name' => 'ent_sab_2',
             'type' => 'Text',
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control hora',
+                'id' => 'ent_sab_2',
             ),
         ));
         $this->add(array(
             'name' => 'sai_sab_2',
             'type' => 'Text',
             'attributes' => array(
-                'class' => 'form-control'
+                'class' => 'form-control hora',
+                'id' => 'sai_sab_2',
             ),
         ));
         $this->add(array(
