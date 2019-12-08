@@ -99,4 +99,11 @@ class FuncionariosController extends AbstractActionController
         );
 
     }
+
+    public function meuPerfilAction()
+    {
+        $funcionario = FuncionariosTable::buscarDados($this->getAdapter(),$_SESSION['funcionario']->id);
+
+        return array('funcionario' => $funcionario);
+    }
 }

@@ -1,0 +1,189 @@
+<script>
+
+</script>
+
+<?php
+
+$title = 'Meu Perfil';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<div class="col-md-12 form-inline">
+<div class="col-md-12">
+    <br>
+    <h5>Dados Pessoais</h5>
+    <hr>
+</div>
+
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Nome
+    </div>
+    <?php echo $this->escapeHtml($funcionario->nome); ?>
+</div>
+<div class="col-md-3 ">
+    <div style="font-weight: bold;">
+        Sexo
+    </div>
+    <?php echo $this->escapeHtml($funcionario->sexo); ?>
+</div>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Data Nascimento
+    </div>
+    <?php echo $this->escapeHtml($funcionario->data_nascimento); ?>
+</div>
+<div class="col-md-3 ">
+    <div style="font-weight: bold;">
+        CPF
+    </div>
+    <?php echo $this->escapeHtml($funcionario->cpf); ?>
+</div>
+<div class="col-md-3 ">
+    <div style="font-weight: bold;">
+        RG
+    </div>
+    <?php echo $this->escapeHtml($funcionario->rg); ?>
+</div>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        PIS/NIS
+    </div>
+    <?php echo $this->escapeHtml($funcionario->pis_nis); ?>
+</div>
+<br>
+<div class="col-md-12">
+    <br>
+    <h5>Endereço</h5>
+    <hr>
+</div>
+<hr>
+<div class="col-md-3 ">
+    <div style="font-weight: bold;">
+        CEP
+    </div>
+    <?php echo $this->escapeHtml($funcionario->cep); ?>
+</div>
+<div class="col-md-3 ">
+    <div style="font-weight: bold;">
+        Cidade
+    </div>
+    <?php echo $this->escapeHtml($funcionario->cidade); ?>
+</div>
+<div class="col-md-6 ">
+    <div style="font-weight: bold;">
+        Estado
+    </div>
+    <?php echo $this->escapeHtml($funcionario->uf); ?>
+</div>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Logradouro
+    </div>
+    <?php echo $this->escapeHtml($funcionario->logradouro); ?>
+</div>
+<div class="col-md-3 ">
+    <div style="font-weight: bold;">
+        Número
+    </div>
+    <?php echo $this->escapeHtml($funcionario->numero); ?>
+</div>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Bairro
+    </div>
+    <?php echo $this->escapeHtml($funcionario->bairro); ?>
+</div>
+<div class="col-md-3 ">
+    <div style="font-weight: bold;">
+        Complemento
+    </div>
+    <?php echo $this->escapeHtml(empty($funcionario->complemento)?'--':$funcionario->complemento); ?>
+</div>
+
+
+<div class="col-md-12">
+    <br>
+    <h5>Contato</h5>
+    <hr>
+</div>
+
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Telefone Fixo
+    </div>
+    <?php echo $this->escapeHtml(empty($funcionario->telefone_fixo)?'--':$funcionario->telefone_fixo); ?>
+</div>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Celular 1
+    </div>
+    <?php echo $this->escapeHtml(empty($funcionario->telefone_celular_1)?'--':$funcionario->telefone_celular_1); ?>
+</div>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Celular 2
+    </div>
+    <?php echo $this->escapeHtml(empty($funcionario->telefone_celular_2)?'--':$funcionario->telefone_celular_2); ?>
+</div>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        E-mail
+    </div>
+    <?php echo $this->escapeHtml(empty($funcionario->email)?'--':$funcionario->email); ?>
+</div>
+<br>
+<div class="col-md-12">
+    <br>
+    <h5>Dados de Usuário</h5>
+    <hr>
+</div>
+
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Perfil
+    </div>
+    <?php echo $this->escapeHtml($funcionario->perfil); ?>
+</div>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Nome de Usuário
+    </div>
+    <?php echo $this->escapeHtml($funcionario->user_name); ?>
+</div>
+<br>
+<div class="col-md-12">
+    <br>
+    <h5>Contrato</h5>
+    <hr>
+</div>
+<hr>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Data de Admissão
+    </div>
+    <?php echo $this->escapeHtml($funcionario->data_admissao); ?>
+</div>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Salário(R$)
+    </div>
+    <?php echo $this->escapeHtml($funcionario->salario); ?>
+</div>
+<div class="col-md-3">
+    <div style="font-weight: bold;">
+        Função
+    </div>
+    <?php echo $this->escapeHtml($funcionario->funcao); ?>
+</div>
+<br>
+
+<div class="col-md-12">
+    
+</div>
+</div>
+<?php
+echo $this->form()->closeTag();
+?>

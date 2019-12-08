@@ -73,7 +73,7 @@ class FuncionariosTable
 
     public static function buscarDados($adapter,$id)
     {
-        $sql = "select id,nome,DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento,pis_nis,cpf,funcao,DATE_FORMAT(data_cadastro, '%d/%m/%Y') as data_cadastro from funcionarios where id = " . $id;
+        $sql = "select id,nome,case sexo when 'M' then 'Masculino' else 'Feminino' end as sexo, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento,rg,cpf,pis_nis,telefone_fixo,telefone_celular_1,telefone_celular_2,email,salario,funcao,DATE_FORMAT(data_cadastro, '%d/%m/%Y') as data_cadastro,user_name, DATE_FORMAT(data_admissao, '%d/%m/%Y') as data_admissao,cep,cidade,uf,logradouro, numero,bairro,complemento,case perfil when 1 then 'Administrador' when 2 then 'Gerente' else 'Funionário comum' end as perfil from funcionarios where id = " . $id;
 
         $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
 
