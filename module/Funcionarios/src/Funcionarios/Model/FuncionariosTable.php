@@ -3,6 +3,8 @@ namespace Funcionarios\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\Adapter\Adapter;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\Sql\Where;
 
 class FuncionariosTable
 {
@@ -69,6 +71,17 @@ class FuncionariosTable
                 throw new \Exception('Funcionarios id does not exist');
             }
         }
+    }
+
+    public static function buscarTodos($adapter)
+    {
+        $resultSet = new ResultSet();
+
+        $sql = "CALL buscarFuncionariosAbaixo(" . $_SESSION['funcionario']->id . ")";
+
+        $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $resultSet;
     }
 
     public static function buscarDados($adapter,$id)

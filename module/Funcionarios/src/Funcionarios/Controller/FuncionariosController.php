@@ -30,7 +30,7 @@ class FuncionariosController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'funcionarios' => $this->getFuncionariosTable()->fetchAll(),
+            'funcionarios' => FuncionariosTable::buscarTodos($this->getAdapter()),
         ));
     }
 

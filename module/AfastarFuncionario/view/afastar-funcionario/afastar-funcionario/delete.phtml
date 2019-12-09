@@ -79,7 +79,7 @@ $afastamento = $this->afastamento;
         </label>
     </dt>
     <dd class="col-md-10 float-left">
-        <?php echo $afastamento->observacao; ?>
+        <?php echo empty($afastamento->observacao)?'--':$afastamento->observacao; ?>
     </dd>
 </div>
 

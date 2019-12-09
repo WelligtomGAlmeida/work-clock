@@ -31,13 +31,13 @@ class RelatoriosTable
     {
         $resultSet = new ResultSet();
         if($id != Null && $nome == Null)
-            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id = " . $id . " and id <> " . $_SESSION['funcionario']->id;
+            $sql = "select f.id, f.nome, f.funcao, DATE_FORMAT(f.data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios f inner join perfil p on p.id = f.perfil where vid = " . $id . " and p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";
         else if($id == Null && $nome != Null)
-            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where nome like '%" . $nome . "%' and id <> " . $_SESSION['funcionario']->id;
+            $sql = "select f.id, f.nome, f.funcao, DATE_FORMAT(f.data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios f inner join perfil p on p.id = f.perfil where f.nome like '%" . $nome . "%' and p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";
         else if($id != Null && $nome != Null)
-            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where nome like '%" . $nome . "%' and id = " . $id . " and id <> " . $_SESSION['funcionario']->id;
+            $sql = "select f.id, f.nome, f.funcao, DATE_FORMAT(f.data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios f inner join perfil p on p.id = f.perfil where f.nome like '%" . $nome . "%' and f.id = " . $id . " and p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";
         else
-            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id <> " . $_SESSION['funcionario']->id;            
+            $sql = "select f.id, f.nome, f.funcao, DATE_FORMAT(f.data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios f inner join perfil p on p.id = f.perfil where p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";
 
         $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
 

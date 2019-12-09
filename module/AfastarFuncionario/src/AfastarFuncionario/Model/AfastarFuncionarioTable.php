@@ -62,13 +62,13 @@ class AfastarFuncionarioTable
     {
         $resultSet = new ResultSet();
         if($id != Null && $nome == Null)
-            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id = " . $id . " and id <> " . $_SESSION['funcionario']->id;
+            $sql = "select f.id, f.nome, f.funcao, DATE_FORMAT(f.data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios f inner join perfil p on p.id = f.perfil where vid = " . $id . " and p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";
         else if($id == Null && $nome != Null)
-            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where nome like '%" . $nome . "%' and id <> " . $_SESSION['funcionario']->id;
+            $sql = "select f.id, f.nome, f.funcao, DATE_FORMAT(f.data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios f inner join perfil p on p.id = f.perfil where f.nome like '%" . $nome . "%' and p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";
         else if($id != Null && $nome != Null)
-            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where nome like '%" . $nome . "%' and id = " . $id . " and id <> " . $_SESSION['funcionario']->id;
+            $sql = "select f.id, f.nome, f.funcao, DATE_FORMAT(f.data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios f inner join perfil p on p.id = f.perfil where f.nome like '%" . $nome . "%' and f.id = " . $id . " and p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";
         else
-            $sql = "select id, nome, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id <> " . $_SESSION['funcionario']->id;            
+            $sql = "select f.id, f.nome, f.funcao, DATE_FORMAT(f.data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios f inner join perfil p on p.id = f.perfil where p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";            
 
         $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
 
@@ -77,7 +77,7 @@ class AfastarFuncionarioTable
 
     public static function consultarFuncionario($adapter,$id)
     {
-        $sql = "select * from funcionarios where id = " . $id;          
+        $sql = "select id,nome, cpf, funcao, DATE_FORMAT(data_nascimento, '%d/%m/%Y') as data_nascimento from funcionarios where id = " . $id;          
 
         $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
 
@@ -86,7 +86,7 @@ class AfastarFuncionarioTable
 
     public static function buscarDados($adapter,$id)
     {
-        $sql = " select fa.id,f.nome,data_ini,data_fim,tipo,observacao from funcionarios_afastados fa inner join funcionarios f on fa.funcionario_id = f.id where fa.id = " . $id;
+        $sql = " select fa.id,f.nome,DATE_FORMAT(data_ini, '%d/%m/%Y') as data_ini,DATE_FORMAT(data_fim, '%d/%m/%Y') as data_fim,ta.descricao as tipo,observacao from funcionarios_afastados fa inner join funcionarios f on fa.funcionario_id = f.id inner join tipo_afastamento ta on ta.id = fa.tipo where fa.id = " . $id;
 
         $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
 
@@ -95,7 +95,7 @@ class AfastarFuncionarioTable
 
     public static function buscarTodos($adapter)
     {
-        $sql = "select a.id,DATE_FORMAT(data_ini, '%d/%m/%Y') as data,f.nome,ta.descricao as tipo from funcionarios_afastados a inner join funcionarios f on f.id = a.funcionario_id inner join tipo_afastamento ta on a.tipo = ta.id";
+        $sql = "select a.id,DATE_FORMAT(data_ini, '%d/%m/%Y') as data,f.nome,ta.descricao as tipo from funcionarios_afastados a inner join funcionarios f on f.id = a.funcionario_id inner join tipo_afastamento ta on a.tipo = ta.id inner join perfil p on p.id = f.perfil where p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";
 
         $resultSet = new ResultSet();
 
