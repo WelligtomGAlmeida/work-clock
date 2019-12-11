@@ -19,6 +19,8 @@ class RelatoriosTable
             $data_final = date('1900-01-01');    
 
         $sql = "CALL rel_RelatorioGeral_sp('" . $data_inicial . "','" . $data_final . "'," . $informacao . "," . $ordem . "," . $nlinhas . ")";
+        //var_dump($sql);
+        //exit();
 
         $result = new ResultSet(); 
 

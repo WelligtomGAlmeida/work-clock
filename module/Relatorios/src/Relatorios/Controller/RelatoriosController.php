@@ -35,8 +35,25 @@ class RelatoriosController extends AbstractActionController
             return $this->redirect()->toRoute('relatorios');
         }
 
+        $relatorio = '';
+        if($informacao == 1)
+            $relatorio = 'Todos os Funcionários';
+        elseif($informacao == 2)
+            $relatorio = 'Funcionários Demitidos';
+        elseif($informacao == 3)
+            $relatorio = 'Funcionários Admitidos(ativos)';
+        elseif($informacao == 4)
+            $relatorio = 'Funcionários Afastados';
+        elseif($informacao == 5)
+            $relatorio = 'Funcionários com menos faltas';
+        elseif($informacao == 6)
+            $relatorio = 'Funcionários com mais faltas';
+            
+
         return array(
             'funcionarios'   => $funcionarios,
+            'informacao' => $informacao,
+            'relatorio' => $relatorio,
         );
     }
 

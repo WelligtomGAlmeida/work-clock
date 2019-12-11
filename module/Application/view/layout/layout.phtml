@@ -107,7 +107,7 @@
     
     </head>
     <body class="position-relative" style="min-height: 100vh;">
-        <div style="height: 100vh">
+    <div style="height: 100vh">
         <?php
             if(isset($_SESSION['funcionario']))
             {
@@ -219,7 +219,7 @@
             <?php echo $this->content; ?>
         </div>
         <footer class="position-absolute navbar-fixed-bottom">
-            <p class="texto-rodape">&copy; 2019 - <?php echo date('Y') ?> by FATEC - Ourinhos <?php echo $this->translate('All rights reserved.') ?></p>
+            <p class="texto-rodape">&copy; <?php echo date('Y') ?> by FATEC - Ourinhos <?php echo $this->translate('All rights reserved.') ?></p>
             <div class="col-md-12 px-0 mt-3">
                 <img src="/img/rodape.svg" class="img-fluid" alt="">
             </div>
