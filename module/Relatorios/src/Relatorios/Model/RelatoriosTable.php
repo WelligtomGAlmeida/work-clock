@@ -45,4 +45,44 @@ class RelatoriosTable
 
         return $resultSet;
     }
+
+    public static function consultarEmpresa($adapter,$mes)
+    {
+        $sql = "select razao_social, cnpj, logradouro, numero, bairro, cep, cidade, uf,DATE_FORMAT('" . $mes . "', '%d/%m/%Y') as inicio,DATE_FORMAT(LAST_DAY('" . $mes . "'), '%d/%m/%Y') as fim from empresas;";
+
+        $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $result->current();
+    }
+
+    public static function consultarHorario($adapter)
+    {
+        $sql = "select DATE_FORMAT(ent_1, '%H:%i') as ent_1, DATE_FORMAT(sai_1, '%H:%i') as sai_1, DATE_FORMAT(ent_2, '%H:%i') as ent_2, DATE_FORMAT(sai_2, '%H:%i') as sai_2, case when ent_sab_1 is null then '--:-- ' else DATE_FORMAT(ent_sab_1, '%H:%i') end as ent_sab_1,  case when sai_sab_1 is null then '--:-- ' else DATE_FORMAT(sai_sab_1, '%H:%i') end as sai_sab_1,  case when ent_sab_2 is null then '--:-- ' else DATE_FORMAT(ent_sab_2, '%H:%i') end as ent_sab_2,  case when sai_sab_2 is null then '--:-- ' else DATE_FORMAT(sai_sab_2, '%H:%i') end as sai_sab_2 from variaveis_empresa";
+
+        $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $result->current();
+    }
+
+    public static function consultarFuncionario($adapter,$data,$funcionarios)
+    {
+        $resultSet = new ResultSet();
+        $sql = "call rel_total_pontos('" . $data ."');";
+        $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+        
+        $sql = "select f.id, nome, pis_nis, funcao, concat('R$ ',salario) as salario, DATE_FORMAT(data_admissao, '%d/%m/%Y') as data_admissao, pt.* from funcionarios f inner join pontos_total pt on f.id = pt.funcionario where f.perfil <> 1 and f.id in (" . $funcionarios . ");";
+
+        $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $resultSet;
+    }
+
+    public static function consultarPontos($adapter, $data){
+        $resultSet = new ResultSet();
+        $sql = "call rel_pontos('" . $data ."')";
+
+        $resultSet = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $resultSet;
+    }
 }

@@ -95,7 +95,7 @@ class AfastarFuncionarioTable
 
     public static function buscarTodos($adapter)
     {
-        $sql = "select a.id,DATE_FORMAT(data_ini, '%d/%m/%Y') as data,f.nome,ta.descricao as tipo from funcionarios_afastados a inner join funcionarios f on f.id = a.funcionario_id inner join tipo_afastamento ta on a.tipo = ta.id inner join perfil p on p.id = f.perfil where p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";
+        $sql = "select a.id,DATE_FORMAT(data_ini, '%d/%m/%Y') as data,f.nome,ta.descricao as tipo from funcionarios_afastados a inner join funcionarios f on f.id = a.funcionario_id inner join tipo_afastamento ta on a.tipo = ta.id inner join perfil p on p.id = f.perfil where p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ") order by a.data_ini";
 
         $resultSet = new ResultSet();
 

@@ -44,15 +44,33 @@ class Sessao {
             }
 
             if ( $result->isValid() ) {
+                $flag_dia = LoginTable::verificaDia($this->adapter);
+                $flag_afastamento = LoginTable::verificaAfastamento($this->adapter,$dados["login"]);
 
-                $resultado = LoginTable::verificaPermissao($this->adapter,$dados["login"],$dados["senha"]);    
+                if($flag_dia['dia'] == 0)
+                {
+                    return array(   "cod" => "2",
+                                    "msg" => "Não é possível acessar o sistema aos Domingos!");
+                }
+                elseif($flag_afastamento['contador'] == 0)
+                {
+                    $resultado = LoginTable::verificaPermissao($this->adapter,$dados["login"],$dados["senha"]);    
 
-                $_SESSION['funcionario'] = $resultado;
-                $_SESSION['empresa'] = 4;
-                $_SESSION['variaveisEmpresa'] = 1;
+                    $_SESSION['funcionario'] = $resultado;
+                    $_SESSION['empresa'] = 4;
+                    $_SESSION['variaveisEmpresa'] = 1;
 
-                return array(   "cod" => "1",
-                                "msg" => "Login realizado com sucesso!");
+
+                    return array(   "cod" => "1",
+                                    "msg" => "Login realizado com sucesso!");
+                }
+                else
+                {
+                    return array(   "cod" => "2",
+                                    "msg" => "Acesso negado. Funcionário Afastado!");
+                }
+                
+                
             
             } else {
                 //

@@ -16,4 +16,22 @@ class LoginTable
 
         return $result->current();
     }
+
+    public static function verificaAfastamento($adapter,$user_name)
+    {
+        $sql = "select count(0) as contador from funcionarios a inner join funcionarios_afastados b on a.id = b.funcionario_id where CURDATE() >= data_ini and CURDATE() <= data_fim and a.user_name = '". $user_name ."';";
+
+        $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $result->current();
+    }   
+
+    public static function verificaDia($adapter)
+    {
+        $sql = "select DATE_FORMAT(CURDATE(),'%w') as dia";
+
+        $result = $adapter->query($sql,Adapter::QUERY_MODE_EXECUTE);
+
+        return $result->current();
+    }   
 }

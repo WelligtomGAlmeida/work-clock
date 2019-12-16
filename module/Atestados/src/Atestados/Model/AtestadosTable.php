@@ -95,7 +95,7 @@ class AtestadosTable
 
     public static function buscarTodos($adapter)
     {
-        $sql = "select a.id,DATE_FORMAT(data, '%d/%m/%Y') as data,f.nome,horas_abonadas from atestados a inner join funcionarios f on f.id = a.funcionario_id inner join perfil p on p.id = f.perfil where p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ")";
+        $sql = "select a.id,DATE_FORMAT(data, '%d/%m/%Y') as data,f.nome,horas_abonadas from atestados a inner join funcionarios f on f.id = a.funcionario_id inner join perfil p on p.id = f.perfil where p.id > (select ff.perfil from funcionarios ff where ff.id = " . $_SESSION['funcionario']->id . ") order by a.data";
 
         $resultSet = new ResultSet();
 

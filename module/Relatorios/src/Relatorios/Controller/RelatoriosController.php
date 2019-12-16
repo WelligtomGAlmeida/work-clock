@@ -119,7 +119,43 @@ class RelatoriosController extends AbstractActionController
 
     public function pontoAction()
     {
-        $viewModel = new ViewModel();
+        
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $mes = $request->getPost('mes') . '-01';
+            $aux = '';
+
+            if(null == $request->getPost('funcionarioscheck'))
+            {
+                return $this->redirect()->toRoute('relatorios', array('action' => 'consultaFuncionarios'));
+            }
+            else
+            {
+                $funcs = $request->getPost('funcionarioscheck');
+
+                foreach($funcs as $_valor){
+                    if($aux == '')
+                        $aux = $_valor;
+                    else
+                        $aux = $aux . ', ' . $_valor;
+                }
+            }
+
+            $empresa = RelatoriosTable::consultarEmpresa($this->getAdapter(),$mes);
+            $horario = RelatoriosTable::consultarHorario($this->getAdapter());
+            $funcionarios = RelatoriosTable::consultarFuncionario($this->getAdapter(),$mes, $aux);
+            $pontos = RelatoriosTable::consultarPontos($this->getAdapter(),$mes);
+        }
+        else{
+        }
+
+        $viewModel = new ViewModel( array( 
+            'empresa'   => $empresa,
+            'horario' => $horario,
+            'funcionarios' => $funcionarios,
+            'pontos' => $pontos->toArray(),
+        ));
+        
         $viewModel->setTerminal(true);
         return $viewModel;
     } 
