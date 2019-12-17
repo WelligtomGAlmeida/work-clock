@@ -68,7 +68,7 @@ $funcionarios = $this->funcionarios;
         });
 
         function marcarTodos(){
-            $('input[name=funcionarioscheck]').each(function(){
+            $('input[id=funcionarioscheck').each(function(){
                 if ($(this).prop( "checked")) 
                     $(this).prop("checked", false);
                 else $(this).prop("checked", true);               

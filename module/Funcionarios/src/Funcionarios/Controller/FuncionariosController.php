@@ -106,4 +106,10 @@ class FuncionariosController extends AbstractActionController
 
         return array('funcionario' => $funcionario);
     }
+
+    public function alterarSenhaAction()
+    {
+        $view = new ViewModel();
+        return $view;
+    }
 }
